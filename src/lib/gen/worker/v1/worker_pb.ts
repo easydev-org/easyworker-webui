@@ -37,7 +37,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file worker/v1/worker.proto.
  */
 export const file_worker_v1_worker: GenFile = /*@__PURE__*/
-  fileDesc("ChZ3b3JrZXIvdjEvd29ya2VyLnByb3RvEgl3b3JrZXIudjEiDQoLSW5mb1JlcXVlc3QirwEKDEluZm9SZXNwb25zZRIKCgJvcxgBIAEoCRIMCgRhcmNoGAIgASgJEg0KBXNoZWxsGAMgASgJEhEKCXdvcmtzcGFjZRgEIAEoCRIPCgdib290X2lkGAUgASgJEhUKDWRyb3BwZWRfbGluZXMYBiABKAMSDAoEaG9tZRgHIAEoCRItCgxjYXBhYmlsaXRpZXMYCCABKAsyFy53b3JrZXIudjEuQ2FwYWJpbGl0aWVzInIKDENhcGFiaWxpdGllcxIPCgdkZXNrdG9wGAEgASgIEg8KB2Rpc3BsYXkYAiABKAkSDQoFbm92bmMYAyABKAgSEgoKbm92bmNfcG9ydBgEIAEoBRINCgV4YTExeRgFIAEoCBIOCgZkaXN0cm8YBiABKAkiowEKDkV4ZWN1dGVSZXF1ZXN0Eg8KB2NvbW1hbmQYASABKAkSDwoHd29ya2RpchgCIAEoCRIvCgNlbnYYAyADKAsyIi53b3JrZXIudjEuRXhlY3V0ZVJlcXVlc3QuRW52RW50cnkSEgoKdGltZW91dF9tcxgEIAEoBRoqCghFbnZFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIiEKD0V4ZWN1dGVSZXNwb25zZRIOCgZqb2JfaWQYASABKAkicgoISm9iRW50cnkSCgoCaWQYASABKAkSDwoHY29tbWFuZBgCIAEoCRINCgVzdGF0ZRgDIAEoCRIRCglleGl0X2NvZGUYBCABKAUSEgoKc3RhcnRlZF9hdBgFIAEoAxITCgtmaW5pc2hlZF9hdBgGIAEoAyIgCg9MaXN0Sm9ic1JlcXVlc3QSDQoFbGltaXQYASABKAUiNQoQTGlzdEpvYnNSZXNwb25zZRIhCgRqb2JzGAEgAygLMhMud29ya2VyLnYxLkpvYkVudHJ5IiEKD1dhdGNoSm9iUmVxdWVzdBIOCgZqb2JfaWQYASABKAkimgEKEFdhdGNoSm9iUmVzcG9uc2USEAoGb3V0cHV0GAEgASgJSAASMAoEZG9uZRgCIAEoCzIgLndvcmtlci52MS5XYXRjaEpvYlJlc3BvbnNlLkRvbmVIABo5CgREb25lEhEKCWV4aXRfY29kZRgBIAEoBRIOCgZzdGRvdXQYAiABKAkSDgoGc3RkZXJyGAMgASgJQgcKBWV2ZW50Ik4KEEpvYk91dHB1dFJlcXVlc3QSDgoGam9iX2lkGAEgASgJEg0KBXN0YXJ0GAIgASgFEgsKA2VuZBgDIAEoBRIOCgZzdHJlYW0YBCABKAkiawoRSm9iT3V0cHV0UmVzcG9uc2USDQoFbGluZXMYASADKAkSEwoLdG90YWxfbGluZXMYAiABKAUSEgoKc3RhcnRfbGluZRgDIAEoBRIQCghlbmRfbGluZRgEIAEoBRIMCgRkb25lGAUgASgIIjQKDkpvYldhaXRSZXF1ZXN0Eg4KBmpvYl9pZBgBIAEoCRISCgp0aW1lb3V0X21zGAIgASgFIjMKD0pvYldhaXRSZXNwb25zZRINCgVzdGF0ZRgBIAEoCRIRCglleGl0X2NvZGUYAiABKAUiPgoPSm9iU3RkaW5SZXF1ZXN0Eg4KBmpvYl9pZBgBIAEoCRIMCgRkYXRhGAIgASgMEg0KBWNsb3NlGAMgASgIIh4KEEpvYlN0ZGluUmVzcG9uc2USCgoCb2sYASABKAgiIAoOSm9iS2lsbFJlcXVlc3QSDgoGam9iX2lkGAEgASgJIh0KD0pvYktpbGxSZXNwb25zZRIKCgJvaxgBIAEoCCJFCg9GaWxlUmVhZFJlcXVlc3QSDAoEcGF0aBgBIAEoCRISCgpzdGFydF9saW5lGAIgASgFEhAKCGVuZF9saW5lGAMgASgFIl4KEEZpbGVSZWFkUmVzcG9uc2USDwoHY29udGVudBgBIAEoDBITCgt0b3RhbF9saW5lcxgCIAEoBRISCgpzdGFydF9saW5lGAMgASgFEhAKCGVuZF9saW5lGAQgASgFIjEKEEZpbGVXcml0ZVJlcXVlc3QSDAoEcGF0aBgBIAEoCRIPCgdjb250ZW50GAIgASgMIh8KEUZpbGVXcml0ZVJlc3BvbnNlEgoKAm9rGAEgASgIIiEKEUZpbGVEZWxldGVSZXF1ZXN0EgwKBHBhdGgYASABKAkiIAoSRmlsZURlbGV0ZVJlc3BvbnNlEgoKAm9rGAEgASgIIisKD0ZpbGVNb3ZlUmVxdWVzdBIMCgRmcm9tGAEgASgJEgoKAnRvGAIgASgJIh4KEEZpbGVNb3ZlUmVzcG9uc2USCgoCb2sYASABKAgiKwoPRmlsZUNvcHlSZXF1ZXN0EgwKBGZyb20YASABKAkSCgoCdG8YAiABKAkiHgoQRmlsZUNvcHlSZXNwb25zZRIKCgJvaxgBIAEoCCI3CglGaWxlRW50cnkSDAoEcGF0aBgBIAEoCRIMCgRzaXplGAIgASgDEg4KBmlzX2RpchgDIAEoCCI9Cg9GaWxlTGlzdFJlcXVlc3QSDAoEcGF0aBgBIAEoCRINCgVkZXB0aBgCIAEoBRINCgVsaW1pdBgDIAEoBSJHChBGaWxlTGlzdFJlc3BvbnNlEg4KBmlzX2RpchgBIAEoCBIjCgVmaWxlcxgCIAMoCzIULndvcmtlci52MS5GaWxlRW50cnkiTgoRU3luY0ZvbGRlclJlcXVlc3QSDwoHdGFyYmFsbBgBIAEoDBIMCgRkZXN0GAIgASgJEg0KBWNsZWFuGAMgASgIEgsKA3JldhgEIAEoCSIxChJTeW5jRm9sZGVyUmVzcG9uc2USDQoFZmlsZXMYASABKAUSDAoEcm9vdBgCIAEoCSIVChNFbnJvbGxTdGF0dXNSZXF1ZXN0ImMKFEVucm9sbFN0YXR1c1Jlc3BvbnNlEg8KB2NsYWltZWQYASABKAgSEgoKbmVlZHNfY29kZRgCIAEoCBIVCg1wcmVhdXRob3JpemVkGAMgASgIEg8KB2Jvb3RfaWQYBCABKAkiNAoSRW5yb2xsQ2xhaW1SZXF1ZXN0EgwKBGNvZGUYASABKAkSEAoIb3duZXJfaWQYAiABKAkiMAoTRW5yb2xsQ2xhaW1SZXNwb25zZRIKCgJvaxgBIAEoCBINCgV0b2tlbhgCIAEoCSIqChZFbnJvbGxVbnJlbGVhc2VSZXF1ZXN0EhAKCG93bmVyX2lkGAEgASgJIjMKF0Vucm9sbFVucmVsZWFzZVJlc3BvbnNlEgoKAm9rGAEgASgIEgwKBGNvZGUYAiABKAkymQgKDVdvcmtlclNlcnZpY2USNwoESW5mbxIWLndvcmtlci52MS5JbmZvUmVxdWVzdBoXLndvcmtlci52MS5JbmZvUmVzcG9uc2USQAoHRXhlY3V0ZRIZLndvcmtlci52MS5FeGVjdXRlUmVxdWVzdBoaLndvcmtlci52MS5FeGVjdXRlUmVzcG9uc2USQwoITGlzdEpvYnMSGi53b3JrZXIudjEuTGlzdEpvYnNSZXF1ZXN0Ghsud29ya2VyLnYxLkxpc3RKb2JzUmVzcG9uc2USRQoIV2F0Y2hKb2ISGi53b3JrZXIudjEuV2F0Y2hKb2JSZXF1ZXN0Ghsud29ya2VyLnYxLldhdGNoSm9iUmVzcG9uc2UwARJGCglKb2JPdXRwdXQSGy53b3JrZXIudjEuSm9iT3V0cHV0UmVxdWVzdBocLndvcmtlci52MS5Kb2JPdXRwdXRSZXNwb25zZRJACgdKb2JXYWl0Ehkud29ya2VyLnYxLkpvYldhaXRSZXF1ZXN0Ghoud29ya2VyLnYxLkpvYldhaXRSZXNwb25zZRJDCghKb2JTdGRpbhIaLndvcmtlci52MS5Kb2JTdGRpblJlcXVlc3QaGy53b3JrZXIudjEuSm9iU3RkaW5SZXNwb25zZRJACgdKb2JLaWxsEhkud29ya2VyLnYxLkpvYktpbGxSZXF1ZXN0Ghoud29ya2VyLnYxLkpvYktpbGxSZXNwb25zZRJDCghGaWxlUmVhZBIaLndvcmtlci52MS5GaWxlUmVhZFJlcXVlc3QaGy53b3JrZXIudjEuRmlsZVJlYWRSZXNwb25zZRJGCglGaWxlV3JpdGUSGy53b3JrZXIudjEuRmlsZVdyaXRlUmVxdWVzdBocLndvcmtlci52MS5GaWxlV3JpdGVSZXNwb25zZRJJCgpGaWxlRGVsZXRlEhwud29ya2VyLnYxLkZpbGVEZWxldGVSZXF1ZXN0Gh0ud29ya2VyLnYxLkZpbGVEZWxldGVSZXNwb25zZRJDCghGaWxlTW92ZRIaLndvcmtlci52MS5GaWxlTW92ZVJlcXVlc3QaGy53b3JrZXIudjEuRmlsZU1vdmVSZXNwb25zZRJDCghGaWxlQ29weRIaLndvcmtlci52MS5GaWxlQ29weVJlcXVlc3QaGy53b3JrZXIudjEuRmlsZUNvcHlSZXNwb25zZRJDCghGaWxlTGlzdBIaLndvcmtlci52MS5GaWxlTGlzdFJlcXVlc3QaGy53b3JrZXIudjEuRmlsZUxpc3RSZXNwb25zZRJJCgpTeW5jRm9sZGVyEhwud29ya2VyLnYxLlN5bmNGb2xkZXJSZXF1ZXN0Gh0ud29ya2VyLnYxLlN5bmNGb2xkZXJSZXNwb25zZTL1AQoMV29ya2VyRW5yb2xsEkkKBlN0YXR1cxIeLndvcmtlci52MS5FbnJvbGxTdGF0dXNSZXF1ZXN0Gh8ud29ya2VyLnYxLkVucm9sbFN0YXR1c1Jlc3BvbnNlEkYKBUNsYWltEh0ud29ya2VyLnYxLkVucm9sbENsYWltUmVxdWVzdBoeLndvcmtlci52MS5FbnJvbGxDbGFpbVJlc3BvbnNlElIKCVVucmVsZWFzZRIhLndvcmtlci52MS5FbnJvbGxVbnJlbGVhc2VSZXF1ZXN0GiIud29ya2VyLnYxLkVucm9sbFVucmVsZWFzZVJlc3BvbnNlQjlaN2dpdGh1Yi5jb20vYWJjcC1zZGsvYWdlbnQtd29ya2VyL2dlbi93b3JrZXIvdjE7d29ya2VydjFiBnByb3RvMw");
+  fileDesc("ChZ3b3JrZXIvdjEvd29ya2VyLnByb3RvEgl3b3JrZXIudjEiDQoLSW5mb1JlcXVlc3QirwEKDEluZm9SZXNwb25zZRIKCgJvcxgBIAEoCRIMCgRhcmNoGAIgASgJEg0KBXNoZWxsGAMgASgJEhEKCXdvcmtzcGFjZRgEIAEoCRIPCgdib290X2lkGAUgASgJEhUKDWRyb3BwZWRfbGluZXMYBiABKAMSDAoEaG9tZRgHIAEoCRItCgxjYXBhYmlsaXRpZXMYCCABKAsyFy53b3JrZXIudjEuQ2FwYWJpbGl0aWVzIpYBCgxDYXBhYmlsaXRpZXMSDwoHZGVza3RvcBgBIAEoCBIPCgdkaXNwbGF5GAIgASgJEg0KBW5vdm5jGAMgASgIEhIKCm5vdm5jX3BvcnQYBCABKAUSDQoFeGExMXkYBSABKAgSDgoGZGlzdHJvGAYgASgJEhAKCHBsYXRmb3JtGAcgASgJEhAKCGNvbXB1dGVyGAggASgIIrYBCg5FeGVjdXRlUmVxdWVzdBIPCgdjb21tYW5kGAEgASgJEg8KB3dvcmtkaXIYAiABKAkSLwoDZW52GAMgAygLMiIud29ya2VyLnYxLkV4ZWN1dGVSZXF1ZXN0LkVudkVudHJ5EhIKCnRpbWVvdXRfbXMYBCABKAUSEQoJbmFtZXNwYWNlGAUgASgJGioKCEVudkVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiIQoPRXhlY3V0ZVJlc3BvbnNlEg4KBmpvYl9pZBgBIAEoCSKFAQoISm9iRW50cnkSCgoCaWQYASABKAkSDwoHY29tbWFuZBgCIAEoCRIRCgluYW1lc3BhY2UYByABKAkSDQoFc3RhdGUYAyABKAkSEQoJZXhpdF9jb2RlGAQgASgFEhIKCnN0YXJ0ZWRfYXQYBSABKAMSEwoLZmluaXNoZWRfYXQYBiABKAMiMwoPTGlzdEpvYnNSZXF1ZXN0Eg0KBWxpbWl0GAEgASgFEhEKCW5hbWVzcGFjZRgCIAEoCSI1ChBMaXN0Sm9ic1Jlc3BvbnNlEiEKBGpvYnMYASADKAsyEy53b3JrZXIudjEuSm9iRW50cnkiIQoPV2F0Y2hKb2JSZXF1ZXN0Eg4KBmpvYl9pZBgBIAEoCSKaAQoQV2F0Y2hKb2JSZXNwb25z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Eg0KBWNsZWFuGAMgASgIEgsKA3JldhgEIAEoCSIxChJTeW5jRm9sZGVyUmVzcG9uc2USDQoFZmlsZXMYASABKAUSDAoEcm9vdBgCIAEoCSIVChNFbnJvbGxTdGF0dXNSZXF1ZXN0ImMKFEVucm9sbFN0YXR1c1Jlc3BvbnNlEg8KB2NsYWltZWQYASABKAgSEgoKbmVlZHNfY29kZRgCIAEoCBIVCg1wcmVhdXRob3JpemVkGAMgASgIEg8KB2Jvb3RfaWQYBCABKAkiNAoSRW5yb2xsQ2xhaW1SZXF1ZXN0EgwKBGNvZGUYASABKAkSEAoIb3duZXJfaWQYAiABKAkiMAoTRW5yb2xsQ2xhaW1SZXNwb25zZRIKCgJvaxgBIAEoCBINCgV0b2tlbhgCIAEoCSIqChZFbnJvbGxVbnJlbGVhc2VSZXF1ZXN0EhAKCG93bmVyX2lkGAEgASgJIjMKF0Vucm9sbFVucmVsZWFzZVJlc3BvbnNlEgoKAm9rGAEgASgIEgwKBGNvZGUYAiABKAkyoAkKDVdvcmtlclNlcnZpY2USNwoESW5mbxIWLndvcmtlci52MS5JbmZvUmVxdWVzdBoXLndvcmtlci52MS5JbmZvUmVzcG9uc2USQAoHRXhlY3V0ZRIZLndvcmtlci52MS5FeGVjdXRlUmVxdWVzdBoaLndvcmtlci52MS5FeGVjdXRlUmVzcG9uc2USQwoITGlzdEpvYnMSGi53b3JrZXIudjEuTGlzdEpvYnNSZXF1ZXN0Ghsud29ya2VyLnYxLkxpc3RKb2JzUmVzcG9uc2USRQoIV2F0Y2hKb2ISGi53b3JrZXIudjEuV2F0Y2hKb2JSZXF1ZXN0Ghsud29ya2VyLnYxLldhdGNoSm9iUmVzcG9uc2UwARJGCglKb2JPdXRwdXQSGy53b3JrZXIudjEuSm9iT3V0cHV0UmVxdWVzdBocLndvcmtlci52MS5Kb2JPdXRwdXRSZXNwb25zZRJACgdKb2JXYWl0Ehkud29ya2VyLnYxLkpvYldhaXRSZXF1ZXN0Ghoud29ya2VyLnYxLkpvYldhaXRSZXNwb25zZRJDCghKb2JTdGRpbhIaLndvcmtlci52MS5Kb2JTdGRpblJlcXVlc3QaGy53b3JrZXIudjEuSm9iU3RkaW5SZXNwb25zZRJACgdKb2JLaWxsEhkud29ya2VyLnYxLkpvYktpbGxSZXF1ZXN0Ghoud29ya2VyLnYxLkpvYktpbGxSZXNwb25zZRJDCghKb2JHcmFwaBIaLndvcmtlci52MS5Kb2JHcmFwaFJlcXVlc3QaGy53b3JrZXIudjEuSm9iR3JhcGhSZXNwb25zZRJACgdKb2JGbG93Ehkud29ya2VyLnYxLkpvYkZsb3dSZXF1ZXN0Ghoud29ya2VyLnYxLkpvYkZsb3dSZXNwb25zZRJDCghGaWxlUmVhZBIaLndvcmtlci52MS5GaWxlUmVhZFJlcXVlc3QaGy53b3JrZXIudjEuRmlsZVJlYWRSZXNwb25zZRJGCglGaWxlV3JpdGUSGy53b3JrZXIudjEuRmlsZVdyaXRlUmVxdWVzdBocLndvcmtlci52MS5GaWxlV3JpdGVSZXNwb25zZRJJCgpGaWxlRGVsZXRlEhwud29ya2VyLnYxLkZpbGVEZWxldGVSZXF1ZXN0Gh0ud29ya2VyLnYxLkZpbGVEZWxldGVSZXNwb25zZRJDCghGaWxlTW92ZRIaLndvcmtlci52MS5GaWxlTW92ZVJlcXVlc3QaGy53b3JrZXIudjEuRmlsZU1vdmVSZXNwb25zZRJDCghGaWxlQ29weRIaLndvcmtlci52MS5GaWxlQ29weVJlcXVlc3QaGy53b3JrZXIudjEuRmlsZUNvcHlSZXNwb25zZRJDCghGaWxlTGlzdBIaLndvcmtlci52MS5GaWxlTGlzdFJlcXVlc3QaGy53b3JrZXIudjEuRmlsZUxpc3RSZXNwb25zZRJJCgpTeW5jRm9sZGVyEhwud29ya2VyLnYxLlN5bmNGb2xkZXJSZXF1ZXN0Gh0ud29ya2VyLnYxLlN5bmNGb2xkZXJSZXNwb25zZTL1AQoMV29ya2VyRW5yb2xsEkkKBlN0YXR1cxIeLndvcmtlci52MS5FbnJvbGxTdGF0dXNSZXF1ZXN0Gh8ud29ya2VyLnYxLkVucm9sbFN0YXR1c1Jlc3BvbnNlEkYKBUNsYWltEh0ud29ya2VyLnYxLkVucm9sbENsYWltUmVxdWVzdBoeLndvcmtlci52MS5FbnJvbGxDbGFpbVJlc3BvbnNlElIKCVVucmVsZWFzZRIhLndvcmtlci52MS5FbnJvbGxVbnJlbGVhc2VSZXF1ZXN0GiIud29ya2VyLnYxLkVucm9sbFVucmVsZWFzZVJlc3BvbnNlQjpaOGdpdGh1Yi5jb20vZWFzeWRldi1vcmcvZWFzeXdvcmtlci9nZW4vd29ya2VyL3YxO3dvcmtlcnYxYgZwcm90bzM");
 
 /**
  * @generated from message worker.v1.InfoRequest
@@ -179,6 +179,21 @@ export type Capabilities = Message<"worker.v1.Capabilities"> & {
    * @generated from field: string distro = 6;
    */
   distro: string;
+
+  /**
+   * Resolved GUI platform for the ComputerService:
+   * linux-x11 | linux-wayland | windows | macos | android | ios.
+   *
+   * @generated from field: string platform = 7;
+   */
+  platform: string;
+
+  /**
+   * The ComputerService is usable (a GUI platform with its tooling present).
+   *
+   * @generated from field: bool computer = 8;
+   */
+  computer: boolean;
 };
 
 /**
@@ -219,6 +234,14 @@ export type ExecuteRequest = Message<"worker.v1.ExecuteRequest"> & {
    * @generated from field: int32 timeout_ms = 4;
    */
   timeoutMs: number;
+
+  /**
+   * Job namespace: "user" (default) for caller commands, "computer" for the
+   * worker's own GUI-automation operations. Lets a UI group them.
+   *
+   * @generated from field: string namespace = 5;
+   */
+  namespace: string;
 };
 
 /**
@@ -258,6 +281,13 @@ export type JobEntry = Message<"worker.v1.JobEntry"> & {
    * @generated from field: string command = 2;
    */
   command: string;
+
+  /**
+   * Namespace the job was registered under (see ExecuteRequest.namespace).
+   *
+   * @generated from field: string namespace = 7;
+   */
+  namespace: string;
 
   /**
    * running | done | killed | failed
@@ -303,6 +333,13 @@ export type ListJobsRequest = Message<"worker.v1.ListJobsRequest"> & {
    * @generated from field: int32 limit = 1;
    */
   limit: number;
+
+  /**
+   * Optional namespace filter ("" = all).
+   *
+   * @generated from field: string namespace = 2;
+   */
+  namespace: string;
 };
 
 /**
@@ -618,6 +655,210 @@ export const JobKillResponseSchema: GenMessage<JobKillResponse> = /*@__PURE__*/
   messageDesc(file_worker_v1_worker, 17);
 
 /**
+ * ---- dataflow graph (easysh) -----------------------------------------------
+ * The same shape easysh's own /api/jobs/{id}/graph returns, so the panel code
+ * is portable between the two.
+ *
+ * @generated from message worker.v1.JobGraphRequest
+ */
+export type JobGraphRequest = Message<"worker.v1.JobGraphRequest"> & {
+  /**
+   * @generated from field: string job_id = 1;
+   */
+  jobId: string;
+};
+
+/**
+ * Describes the message worker.v1.JobGraphRequest.
+ * Use `create(JobGraphRequestSchema)` to create a new message.
+ */
+export const JobGraphRequestSchema: GenMessage<JobGraphRequest> = /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 18);
+
+/**
+ * @generated from message worker.v1.JobGraphResponse
+ */
+export type JobGraphResponse = Message<"worker.v1.JobGraphResponse"> & {
+  /**
+   * @generated from field: repeated worker.v1.Flow flows = 1;
+   */
+  flows: Flow[];
+
+  /**
+   * @generated from field: repeated worker.v1.FlowEdge edges = 2;
+   */
+  edges: FlowEdge[];
+};
+
+/**
+ * Describes the message worker.v1.JobGraphResponse.
+ * Use `create(JobGraphResponseSchema)` to create a new message.
+ */
+export const JobGraphResponseSchema: GenMessage<JobGraphResponse> = /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 19);
+
+/**
+ * @generated from message worker.v1.Flow
+ */
+export type Flow = Message<"worker.v1.Flow"> & {
+  /**
+   * @generated from field: int64 fid = 1;
+   */
+  fid: bigint;
+
+  /**
+   * pipe | file | here | dup | null | capture | terminal | fd
+   *
+   * @generated from field: string kind = 2;
+   */
+  kind: string;
+
+  /**
+   * stdin | stdout | stderr
+   *
+   * @generated from field: string fd = 3;
+   */
+  fd: string;
+
+  /**
+   * the stage this fd belongs to
+   *
+   * @generated from field: string owner = 4;
+   */
+  owner: string;
+
+  /**
+   * the command that wrote it
+   *
+   * @generated from field: string producer = 5;
+   */
+  producer: string;
+
+  /**
+   * the command that read it
+   *
+   * @generated from field: string consumer = 6;
+   */
+  consumer: string;
+
+  /**
+   * file path / here-doc tag
+   *
+   * @generated from field: string path = 7;
+   */
+  path: string;
+
+  /**
+   * @generated from field: int64 bytes = 8;
+   */
+  bytes: bigint;
+
+  /**
+   * @generated from field: int64 lines = 9;
+   */
+  lines: bigint;
+
+  /**
+   * Source span of the owning stage (1-based; end exclusive), for highlighting.
+   *
+   * @generated from field: int32 line = 10;
+   */
+  line: number;
+
+  /**
+   * @generated from field: int32 col = 11;
+   */
+  col: number;
+
+  /**
+   * @generated from field: int32 end_line = 12;
+   */
+  endLine: number;
+
+  /**
+   * @generated from field: int32 end_col = 13;
+   */
+  endCol: number;
+
+  /**
+   * loop-iteration label ("2", "2.1") when inside a loop
+   *
+   * @generated from field: string iter = 14;
+   */
+  iter: string;
+};
+
+/**
+ * Describes the message worker.v1.Flow.
+ * Use `create(FlowSchema)` to create a new message.
+ */
+export const FlowSchema: GenMessage<Flow> = /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 20);
+
+/**
+ * @generated from message worker.v1.FlowEdge
+ */
+export type FlowEdge = Message<"worker.v1.FlowEdge"> & {
+  /**
+   * @generated from field: int64 from_fid = 1;
+   */
+  fromFid: bigint;
+
+  /**
+   * @generated from field: int64 to_fid = 2;
+   */
+  toFid: bigint;
+};
+
+/**
+ * Describes the message worker.v1.FlowEdge.
+ * Use `create(FlowEdgeSchema)` to create a new message.
+ */
+export const FlowEdgeSchema: GenMessage<FlowEdge> = /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 21);
+
+/**
+ * JobFlow returns one flow's intermediate result (the bytes a pipe carried).
+ *
+ * @generated from message worker.v1.JobFlowRequest
+ */
+export type JobFlowRequest = Message<"worker.v1.JobFlowRequest"> & {
+  /**
+   * @generated from field: string job_id = 1;
+   */
+  jobId: string;
+
+  /**
+   * @generated from field: int64 fid = 2;
+   */
+  fid: bigint;
+};
+
+/**
+ * Describes the message worker.v1.JobFlowRequest.
+ * Use `create(JobFlowRequestSchema)` to create a new message.
+ */
+export const JobFlowRequestSchema: GenMessage<JobFlowRequest> = /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 22);
+
+/**
+ * @generated from message worker.v1.JobFlowResponse
+ */
+export type JobFlowResponse = Message<"worker.v1.JobFlowResponse"> & {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data: Uint8Array;
+};
+
+/**
+ * Describes the message worker.v1.JobFlowResponse.
+ * Use `create(JobFlowResponseSchema)` to create a new message.
+ */
+export const JobFlowResponseSchema: GenMessage<JobFlowResponse> = /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 23);
+
+/**
  * @generated from message worker.v1.FileReadRequest
  */
 export type FileReadRequest = Message<"worker.v1.FileReadRequest"> & {
@@ -652,7 +893,7 @@ export type FileReadRequest = Message<"worker.v1.FileReadRequest"> & {
  * Use `create(FileReadRequestSchema)` to create a new message.
  */
 export const FileReadRequestSchema: GenMessage<FileReadRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 18);
+  messageDesc(file_worker_v1_worker, 24);
 
 /**
  * @generated from message worker.v1.FileReadResponse
@@ -690,7 +931,7 @@ export type FileReadResponse = Message<"worker.v1.FileReadResponse"> & {
  * Use `create(FileReadResponseSchema)` to create a new message.
  */
 export const FileReadResponseSchema: GenMessage<FileReadResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 19);
+  messageDesc(file_worker_v1_worker, 25);
 
 /**
  * @generated from message worker.v1.FileWriteRequest
@@ -712,7 +953,7 @@ export type FileWriteRequest = Message<"worker.v1.FileWriteRequest"> & {
  * Use `create(FileWriteRequestSchema)` to create a new message.
  */
 export const FileWriteRequestSchema: GenMessage<FileWriteRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 20);
+  messageDesc(file_worker_v1_worker, 26);
 
 /**
  * @generated from message worker.v1.FileWriteResponse
@@ -729,7 +970,7 @@ export type FileWriteResponse = Message<"worker.v1.FileWriteResponse"> & {
  * Use `create(FileWriteResponseSchema)` to create a new message.
  */
 export const FileWriteResponseSchema: GenMessage<FileWriteResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 21);
+  messageDesc(file_worker_v1_worker, 27);
 
 /**
  * @generated from message worker.v1.FileDeleteRequest
@@ -746,7 +987,7 @@ export type FileDeleteRequest = Message<"worker.v1.FileDeleteRequest"> & {
  * Use `create(FileDeleteRequestSchema)` to create a new message.
  */
 export const FileDeleteRequestSchema: GenMessage<FileDeleteRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 22);
+  messageDesc(file_worker_v1_worker, 28);
 
 /**
  * @generated from message worker.v1.FileDeleteResponse
@@ -763,7 +1004,7 @@ export type FileDeleteResponse = Message<"worker.v1.FileDeleteResponse"> & {
  * Use `create(FileDeleteResponseSchema)` to create a new message.
  */
 export const FileDeleteResponseSchema: GenMessage<FileDeleteResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 23);
+  messageDesc(file_worker_v1_worker, 29);
 
 /**
  * @generated from message worker.v1.FileMoveRequest
@@ -785,7 +1026,7 @@ export type FileMoveRequest = Message<"worker.v1.FileMoveRequest"> & {
  * Use `create(FileMoveRequestSchema)` to create a new message.
  */
 export const FileMoveRequestSchema: GenMessage<FileMoveRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 24);
+  messageDesc(file_worker_v1_worker, 30);
 
 /**
  * @generated from message worker.v1.FileMoveResponse
@@ -802,7 +1043,7 @@ export type FileMoveResponse = Message<"worker.v1.FileMoveResponse"> & {
  * Use `create(FileMoveResponseSchema)` to create a new message.
  */
 export const FileMoveResponseSchema: GenMessage<FileMoveResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 25);
+  messageDesc(file_worker_v1_worker, 31);
 
 /**
  * @generated from message worker.v1.FileCopyRequest
@@ -824,7 +1065,7 @@ export type FileCopyRequest = Message<"worker.v1.FileCopyRequest"> & {
  * Use `create(FileCopyRequestSchema)` to create a new message.
  */
 export const FileCopyRequestSchema: GenMessage<FileCopyRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 26);
+  messageDesc(file_worker_v1_worker, 32);
 
 /**
  * @generated from message worker.v1.FileCopyResponse
@@ -841,7 +1082,7 @@ export type FileCopyResponse = Message<"worker.v1.FileCopyResponse"> & {
  * Use `create(FileCopyResponseSchema)` to create a new message.
  */
 export const FileCopyResponseSchema: GenMessage<FileCopyResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 27);
+  messageDesc(file_worker_v1_worker, 33);
 
 /**
  * @generated from message worker.v1.FileEntry
@@ -868,7 +1109,7 @@ export type FileEntry = Message<"worker.v1.FileEntry"> & {
  * Use `create(FileEntrySchema)` to create a new message.
  */
 export const FileEntrySchema: GenMessage<FileEntry> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 28);
+  messageDesc(file_worker_v1_worker, 34);
 
 /**
  * @generated from message worker.v1.FileListRequest
@@ -901,7 +1142,7 @@ export type FileListRequest = Message<"worker.v1.FileListRequest"> & {
  * Use `create(FileListRequestSchema)` to create a new message.
  */
 export const FileListRequestSchema: GenMessage<FileListRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 29);
+  messageDesc(file_worker_v1_worker, 35);
 
 /**
  * @generated from message worker.v1.FileListResponse
@@ -916,6 +1157,16 @@ export type FileListResponse = Message<"worker.v1.FileListResponse"> & {
    * @generated from field: repeated worker.v1.FileEntry files = 2;
    */
   files: FileEntry[];
+
+  /**
+   * True when the listing hit the entry cap and was TRUNCATED: `files` is a
+   * prefix of the tree, not the whole of it. Callers that treat a missing path
+   * as "deleted" (e.g. sandbox-submit-mr's diff) MUST refuse to act on a
+   * truncated listing rather than infer deletions from it.
+   *
+   * @generated from field: bool truncated = 3;
+   */
+  truncated: boolean;
 };
 
 /**
@@ -923,7 +1174,7 @@ export type FileListResponse = Message<"worker.v1.FileListResponse"> & {
  * Use `create(FileListResponseSchema)` to create a new message.
  */
 export const FileListResponseSchema: GenMessage<FileListResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 30);
+  messageDesc(file_worker_v1_worker, 36);
 
 /**
  * SyncFolder unpacks a tarball of a directory tree into the worker's
@@ -966,7 +1217,7 @@ export type SyncFolderRequest = Message<"worker.v1.SyncFolderRequest"> & {
  * Use `create(SyncFolderRequestSchema)` to create a new message.
  */
 export const SyncFolderRequestSchema: GenMessage<SyncFolderRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 31);
+  messageDesc(file_worker_v1_worker, 37);
 
 /**
  * @generated from message worker.v1.SyncFolderResponse
@@ -990,7 +1241,7 @@ export type SyncFolderResponse = Message<"worker.v1.SyncFolderResponse"> & {
  * Use `create(SyncFolderResponseSchema)` to create a new message.
  */
 export const SyncFolderResponseSchema: GenMessage<SyncFolderResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 32);
+  messageDesc(file_worker_v1_worker, 38);
 
 /**
  * @generated from message worker.v1.EnrollStatusRequest
@@ -1003,7 +1254,7 @@ export type EnrollStatusRequest = Message<"worker.v1.EnrollStatusRequest"> & {
  * Use `create(EnrollStatusRequestSchema)` to create a new message.
  */
 export const EnrollStatusRequestSchema: GenMessage<EnrollStatusRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 33);
+  messageDesc(file_worker_v1_worker, 39);
 
 /**
  * @generated from message worker.v1.EnrollStatusResponse
@@ -1041,7 +1292,7 @@ export type EnrollStatusResponse = Message<"worker.v1.EnrollStatusResponse"> & {
  * Use `create(EnrollStatusResponseSchema)` to create a new message.
  */
 export const EnrollStatusResponseSchema: GenMessage<EnrollStatusResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 34);
+  messageDesc(file_worker_v1_worker, 40);
 
 /**
  * @generated from message worker.v1.EnrollClaimRequest
@@ -1067,7 +1318,7 @@ export type EnrollClaimRequest = Message<"worker.v1.EnrollClaimRequest"> & {
  * Use `create(EnrollClaimRequestSchema)` to create a new message.
  */
 export const EnrollClaimRequestSchema: GenMessage<EnrollClaimRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 35);
+  messageDesc(file_worker_v1_worker, 41);
 
 /**
  * @generated from message worker.v1.EnrollClaimResponse
@@ -1091,7 +1342,7 @@ export type EnrollClaimResponse = Message<"worker.v1.EnrollClaimResponse"> & {
  * Use `create(EnrollClaimResponseSchema)` to create a new message.
  */
 export const EnrollClaimResponseSchema: GenMessage<EnrollClaimResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 36);
+  messageDesc(file_worker_v1_worker, 42);
 
 /**
  * @generated from message worker.v1.EnrollUnreleaseRequest
@@ -1111,7 +1362,7 @@ export type EnrollUnreleaseRequest = Message<"worker.v1.EnrollUnreleaseRequest">
  * Use `create(EnrollUnreleaseRequestSchema)` to create a new message.
  */
 export const EnrollUnreleaseRequestSchema: GenMessage<EnrollUnreleaseRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 37);
+  messageDesc(file_worker_v1_worker, 43);
 
 /**
  * @generated from message worker.v1.EnrollUnreleaseResponse
@@ -1135,7 +1386,7 @@ export type EnrollUnreleaseResponse = Message<"worker.v1.EnrollUnreleaseResponse
  * Use `create(EnrollUnreleaseResponseSchema)` to create a new message.
  */
 export const EnrollUnreleaseResponseSchema: GenMessage<EnrollUnreleaseResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 38);
+  messageDesc(file_worker_v1_worker, 44);
 
 /**
  * @generated from service worker.v1.WorkerService
@@ -1204,6 +1455,25 @@ export const WorkerService: GenService<{
     methodKind: "unary";
     input: typeof JobKillRequestSchema;
     output: typeof JobKillResponseSchema;
+  },
+  /**
+   * JobGraph is the job's easysh dataflow: every flow (pipe/redirect/fd/...)
+   * and the edges between them. JobFlow returns one flow's intermediate bytes.
+   *
+   * @generated from rpc worker.v1.WorkerService.JobGraph
+   */
+  jobGraph: {
+    methodKind: "unary";
+    input: typeof JobGraphRequestSchema;
+    output: typeof JobGraphResponseSchema;
+  },
+  /**
+   * @generated from rpc worker.v1.WorkerService.JobFlow
+   */
+  jobFlow: {
+    methodKind: "unary";
+    input: typeof JobFlowRequestSchema;
+    output: typeof JobFlowResponseSchema;
   },
   /**
    * @generated from rpc worker.v1.WorkerService.FileRead

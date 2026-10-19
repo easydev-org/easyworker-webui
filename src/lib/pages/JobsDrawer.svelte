@@ -7,6 +7,7 @@
   import { AppIcons } from '$lib/icons'
   import { client, session, stripAnsi } from '$lib/session.svelte'
   import { watchJob } from '$lib/worker'
+  import FlowGraph from '$lib/pages/FlowGraph.svelte'
 
   let { onClose }: { onClose: () => void } = $props()
 
@@ -111,6 +112,12 @@
     viewLines = []
   }
 
+  // detailTab switches the job detail between its output and its easysh
+  // dataflow graph (pipes/redirects, with each intermediate result readable).
+  let detailTab = $state<'output' | 'graph'>('output')
+  function showOutput() { detailTab = 'output' }
+  function showGraph() { detailTab = 'graph' }
+
   onMount(() => {
     void load()
   })
@@ -124,6 +131,16 @@
       </Button>
     {/if}
     <span class="text-meta font-semibold">{viewId ? 'Output' : 'Jobs'}</span>
+    {#if viewId}
+      <div class="ml-2 flex items-center gap-0.5 rounded-md border border-border p-0.5">
+        <button
+          class="rounded px-1.5 py-0.5 text-micro {detailTab === 'output' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}"
+          onclick={showOutput}>output</button>
+        <button
+          class="rounded px-1.5 py-0.5 text-micro {detailTab === 'graph' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'}"
+          onclick={showGraph}>graph</button>
+      </div>
+    {/if}
     <span class="ml-auto"></span>
     {#if viewId}
       <select
@@ -149,14 +166,18 @@
   </div>
 
   {#if viewId}
-    <div class="min-h-0 flex-1 overflow-auto p-2 font-mono text-meta">
-      {#each viewLines as l, i (i)}
-        <div class="term-line">{l}</div>
-      {/each}
-      {#if viewLines.length === 0}
-        <p class="text-muted-foreground">no output</p>
-      {/if}
-    </div>
+    {#if detailTab === 'graph'}
+      <FlowGraph client={client()} jobId={viewId!} />
+    {:else}
+      <div class="min-h-0 flex-1 overflow-auto p-2 font-mono text-meta">
+        {#each viewLines as l, i (i)}
+          <div class="term-line">{l}</div>
+        {/each}
+        {#if viewLines.length === 0}
+          <p class="text-muted-foreground">no output</p>
+        {/if}
+      </div>
+    {/if}
     <div class="flex shrink-0 items-center gap-2 border-t border-border px-2 py-1.5 text-micro text-muted-foreground">
       <span>{viewLines.length} / {viewTotal} lines {viewDone ? '· done' : '· running'}</span>
       <span class="ml-auto"></span>
