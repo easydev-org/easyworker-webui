@@ -9,15 +9,19 @@
   import ShellPage from '$lib/pages/ShellPage.svelte'
   import FilesDrawer from '$lib/pages/FilesDrawer.svelte'
   import JobsDrawer from '$lib/pages/JobsDrawer.svelte'
-  import DesktopPage from '$lib/pages/DesktopPage.svelte'
   import { session, setToken } from '$lib/session.svelte'
 
   let entered = $state(session.connected)
   let drawer = $state<'files' | 'jobs' | null>(null)
-  // Main surface: the shell console or the graphical desktop (a live H.264
-  // screen stream decoded by WebCodecs). Desktop appears only when the sandbox
-  // has a screen (Info.capabilities.desktop).
-  let surface = $state<'shell' | 'desktop'>('shell')
+  // The desktop is deliberately NOT a surface of this panel: there is no
+  // in-panel stream page. The Desktop button opens the easystream daemon's own
+  // UI in a new tab (the worker reverse-proxies it at /desktop/).
+  //
+  // The old DesktopPage/StreamPage pair was a half-finished duplicate of that
+  // UI and had rotted: StreamPage opened its socket on /stream/ws, a path that
+  // stopped existing when the worker's stream package moved to Prefix "/est/".
+  // Clicking Desktop opened a page whose WebSocket never connected. One UI, one
+  // owner.
   const hasDesktop = $derived(!!session.capabilities?.desktop || !!session.capabilities?.novnc)
 
   onMount(() => {
@@ -37,8 +41,10 @@
   }
 
   function showDesktop() {
+    // Open the easystream daemon's OWN UI in a new tab, proxied by the worker
+    // at /desktop/ (same origin, same port — no extra Service, no CORS).
     drawer = null
-    surface = surface === 'desktop' ? 'shell' : 'desktop'
+    window.open('/desktop/', '_blank', 'noopener')
   }
 </script>
 
@@ -57,7 +63,7 @@
         <Button
           variant="ghost"
           size="sm"
-          class="gap-1.5 {surface === 'desktop' ? 'bg-muted text-foreground' : ''}"
+          class="gap-1.5"
           onclick={showDesktop}
         >
           <AppIcons.desktop class="size-4" />Desktop
@@ -85,16 +91,12 @@
     </header>
 
     <div class="relative flex min-h-0 flex-1">
-      {#if surface === 'desktop'}
-        <DesktopPage onClose={() => (surface = 'shell')} />
-      {:else}
-        <ShellPage />
-      {/if}
-      {#if surface === 'shell' && drawer === 'files'}
+      <ShellPage />
+      {#if drawer === 'files'}
         <aside class="flex min-h-0 w-full flex-col border-border bg-card max-sm:absolute max-sm:inset-0 max-sm:z-10 max-sm:border-l-0 sm:w-1/2 sm:border-l">
           <FilesDrawer onClose={() => (drawer = null)} />
         </aside>
-      {:else if surface === 'shell' && drawer === 'jobs'}
+      {:else if drawer === 'jobs'}
         <aside class="flex min-h-0 w-full flex-col border-border bg-card max-sm:absolute max-sm:inset-0 max-sm:z-10 max-sm:border-l-0 sm:w-1/2 sm:border-l">
           <JobsDrawer onClose={() => (drawer = null)} />
         </aside>
