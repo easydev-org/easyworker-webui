@@ -103,7 +103,8 @@ export function previewKind(name: string): PreviewKind {
   if (TEXT.has(e)) return 'text'
   // Extensionless common text files.
   const base = (name.split('/').pop() ?? '').toLowerCase()
-  if (base === 'dockerfile' || base === 'makefile' || base.startsWith('.') ) return 'text'
+  if (base === 'dockerfile' || base === 'makefile' || base.startsWith('.'))
+    return 'text'
   return 'none'
 }
 
@@ -111,14 +112,32 @@ export function previewKind(name: string): PreviewKind {
 export function mimeFor(name: string): string {
   const e = extOf(name)
   const map: Record<string, string> = {
-    png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', gif: 'image/gif',
-    webp: 'image/webp', bmp: 'image/bmp', svg: 'image/svg+xml', ico: 'image/x-icon',
-    avif: 'image/avif', apng: 'image/apng',
-    mp3: 'audio/mpeg', wav: 'audio/wav', ogg: 'audio/ogg', oga: 'audio/ogg',
-    m4a: 'audio/mp4', aac: 'audio/aac', flac: 'audio/flac', opus: 'audio/opus',
+    png: 'image/png',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    gif: 'image/gif',
+    webp: 'image/webp',
+    bmp: 'image/bmp',
+    svg: 'image/svg+xml',
+    ico: 'image/x-icon',
+    avif: 'image/avif',
+    apng: 'image/apng',
+    mp3: 'audio/mpeg',
+    wav: 'audio/wav',
+    ogg: 'audio/ogg',
+    oga: 'audio/ogg',
+    m4a: 'audio/mp4',
+    aac: 'audio/aac',
+    flac: 'audio/flac',
+    opus: 'audio/opus',
     weba: 'audio/webm',
-    mp4: 'video/mp4', webm: 'video/webm', ogv: 'video/ogg', mov: 'video/quicktime',
-    m4v: 'video/x-m4v', mkv: 'video/x-matroska', avi: 'video/x-msvideo',
+    mp4: 'video/mp4',
+    webm: 'video/webm',
+    ogv: 'video/ogg',
+    mov: 'video/quicktime',
+    m4v: 'video/x-m4v',
+    mkv: 'video/x-matroska',
+    avi: 'video/x-msvideo',
   }
   return map[e] ?? 'application/octet-stream'
 }
