@@ -1,0 +1,65 @@
+name: release
+
+# Publish a Release on every tag, carrying the built SPA as an asset.
+#
+# WHY THIS EXISTS
+#
+# Everything that consumes this UI (every sandbox image, the Go daemon that
+# //go:embed's it) used to `git clone --branch main`. That means those builds ran
+# against whatever the branch tip happened to be, unreproducibly: nothing in the
+# consuming build recorded which commit produced its UI, and a push here could
+# break a build there with no tag to point at.
+#
+# Now every consumer clones a TAG, and the tag is what a Release is attached to.
+# The asset is also published so a consumer that only needs the built files does
+# not have to run npm at all.
+#
+# Tag with: git tag -a v0.1.1 -m "..." && git push origin v0.1.1
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to (re)build the asset for"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: build
+        run: npm run build
+
+      - name: assert the build produced output
+        run: |
+          set -euo pipefail
+          d=""
+          for cand in dist build; do
+            [ -d "$cand" ] && d="$cand" && break
+          done
+          [ -n "$d" ] || { echo "::error::no dist/ or build/ directory"; exit 1; }
+          n=$(find "$d" -type f | wc -l)
+          echo "$d: $n files"
+          [ "$n" -gt 0 ] || { echo "::error::$d is empty"; exit 1; }
+          tar -czf /tmp/webui-dist.tar.gz -C "$d" .
+          ls -l /tmp/webui-dist.tar.gz
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          files: /tmp/webui-dist.tar.gz
+          fail_on_unmatched_files: true
