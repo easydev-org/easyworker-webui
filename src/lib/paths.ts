@@ -74,7 +74,7 @@ export function displayPath(abs: string): string {
   const ws = anchors.workspace
   if (!ws) return abs
   if (abs === ws) return '~'
-  if (abs.startsWith(ws + '/')) return `~/${abs.slice(ws.length + 1)}`
+  if (abs.startsWith(`${ws}/`)) return `~/${abs.slice(ws.length + 1)}`
   return abs
 }
 
@@ -86,7 +86,7 @@ export function basename(p: string): string {
  *  first crumb is `~`; otherwise it is the filesystem root (`/` or `C:/`). */
 export function crumbsOf(abs: string): { name: string; path: string }[] {
   const ws = anchors.workspace
-  if (ws && (abs === ws || abs.startsWith(ws + '/'))) {
+  if (ws && (abs === ws || abs.startsWith(`${ws}/`))) {
     const out = [{ name: '~', path: ws }]
     let acc = ws
     for (const seg of abs.slice(ws.length).split('/').filter(Boolean)) {
