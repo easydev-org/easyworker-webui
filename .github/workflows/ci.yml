@@ -1,0 +1,60 @@
+name: ci
+
+# Check every push and pull request: install, type/lint check when the repo has
+# one, and a production build.
+#
+# These repos had NO CI at all, so a change that broke the build was only
+# discovered when an image build failed downstream (easyworker-webui is vendored
+# into the worker image, easysh-webui into easysh, and so on).
+#
+# `npm ci` rather than `npm install`: package-lock.json is committed, and ci
+# installs exactly the locked tree, so a floating dependency cannot make a green
+# build red overnight.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+
+      # `check` exists in some repos (biome + svelte-check + tsc) and not in
+      # others; run it only when defined, and never invent one.
+      - name: check
+        run: |
+          if node -e "process.exit(require('./package.json').scripts.check?0:1)"; then
+            npm run check
+          else
+            echo "no check script"
+          fi
+
+      - name: build
+        run: npm run build
+
+      # A vite build that emits nothing is a failure that looks like a success.
+      - name: assert the build produced output
+        run: |
+          set -euo pipefail
+          d=""
+          for cand in dist build public; do
+            [ -d "$cand" ] && d="$cand" && break
+          done
+          [ -n "$d" ] || { echo "::error::no dist/ or build/ directory"; exit 1; }
+          n=$(find "$d" -type f | wc -l)
+          echo "$d: $n files"
+          [ "$n" -gt 0 ] || { echo "::error::$d is empty"; exit 1; }
