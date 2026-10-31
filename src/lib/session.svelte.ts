@@ -18,6 +18,14 @@ export const session = $state({
   os: '',
   arch: '',
   bootId: '',
+  /**
+   * The languages this worker can run (Info.interpreters), in the order the engine reported them.
+   *
+   * EMPTY UNTIL Info ARRIVES, and empty is also a legitimate answer (a worker with no interpreter it
+   * can actually execute). The console's run button is disabled while it is empty, because there is
+   * nothing valid to send: `lang` is required by the engine and has no default.
+   */
+  interpreters: [] as { id: string; name: string; modes: string[] }[],
   /** What the sandbox IMAGE can do (Info.capabilities). */
   capabilities: null as null | {
     desktop?: boolean
@@ -48,6 +56,16 @@ export function applyInfo(i: {
   os?: string
   arch?: string
   bootId?: string
+  // THE LANGUAGES THIS WORKER CAN RUN. The engine probes each interpreter by RUNNING it, so an entry
+  // here means "this will work", not merely "this is installed". It is what the console's language
+  // picker offers, and the reason the picker has nothing to guess about.
+  interpreters?: {
+    id?: string
+    name?: string
+    path?: string
+    version?: string
+    modes?: string[]
+  }[]
   capabilities?: {
     desktop?: boolean
     display?: string
@@ -62,6 +80,13 @@ export function applyInfo(i: {
   session.os = i.os || ''
   session.arch = i.arch || ''
   session.bootId = i.bootId || ''
+  session.interpreters = (i.interpreters ?? [])
+    .map(x => ({
+      id: x.id || '',
+      name: x.name || x.id || '',
+      modes: x.modes ?? [],
+    }))
+    .filter(x => x.id !== '')
   session.capabilities = i.capabilities ?? null
   setAnchors({ workspace: session.workspace })
 }

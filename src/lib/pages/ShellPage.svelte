@@ -14,6 +14,37 @@
   let inputEl: HTMLInputElement | null = $state(null)
   let command = $state('')
   let running = $state(false)
+  /**
+   * The language the prompt's text is written in, and its mode.
+   *
+   * BOTH COME FROM THE WORKER, never from a guess. The engine reports only interpreters it managed to
+   * RUN a probe program with, so this list is "what will work" rather than "what is installed". The
+   * default is the first one it reported — usually bash — and switching is a control the reader uses
+   * deliberately, because the same text means different things in different languages.
+   */
+  let lang = $state('')
+  let mode = $state('')
+
+  /** The modes the chosen language declares; empty means the interpreter has no either/or choice. */
+  const modes = $derived(session.interpreters.find(i => i.id === lang)?.modes ?? [])
+
+  // FOLLOW THE WORKER: once Info arrives (or the sandbox is reconnected), make sure the selection is
+  // still one this worker actually has, and pick the first when nothing is chosen yet.
+  $effect(() => {
+    const list = session.interpreters
+    if (list.length === 0) {
+      lang = ''
+      mode = ''
+      return
+    }
+    if (!list.some(i => i.id === lang)) {
+      lang = list[0].id
+      mode = ''
+    }
+    // A mode the language does not declare is an error at the engine, so it is dropped here rather
+    // than sent.
+    if (mode && !(list.find(i => i.id === lang)?.modes ?? []).includes(mode)) mode = ''
+  })
   let watchAbort: AbortController | null = null
   const history: string[] = []
   let histIdx = -1
@@ -52,7 +83,16 @@
         await applyCd(cd[1])
         return
       }
-      const r = await client().execute({ command: cmd, workdir: session.cwd || session.workspace })
+      // `lang` IS REQUIRED AND HAS NO DEFAULT. The engine rejects a request without it rather than
+      // guessing: `echo hi && ls` is bash, is a syntax error in Windows PowerShell 5.1, and means
+      // something else in PowerShell 7 — a guess would run the command as the wrong language and
+      // report success. The picker above the prompt is where it comes from.
+      const r = await client().execute({
+        command: cmd,
+        workdir: session.cwd || session.workspace,
+        lang: lang,
+        mode: mode,
+      })
       await watchJob(
         session.token,
         r.jobId,
@@ -158,6 +198,37 @@
     }}
   >
     <span class="shrink-0 truncate font-mono text-meta text-muted-foreground">{displayPath(session.cwd || session.workspace || '/')}</span>
+    <!-- THE LANGUAGE PICKER. It sits at the prompt because it changes what the text beside it MEANS:
+         `ls` is a command in bash and an alias in PowerShell 7, and `echo hi && ls` does not parse in
+         Windows PowerShell at all. Hidden when the worker offers one language or none — a picker with
+         a single option is a control that cannot do anything. -->
+    {#if session.interpreters.length > 1}
+      <select
+        bind:value={lang}
+        disabled={running}
+        class="shrink-0 rounded border border-border bg-transparent px-1 py-0.5 font-mono text-micro text-muted-foreground outline-none disabled:opacity-50"
+        title="The language this command is written in. The worker only lists interpreters it ran a probe with."
+        aria-label="Language"
+      >
+        {#each session.interpreters as it (it.id)}
+          <option value={it.id}>{it.name || it.id}</option>
+        {/each}
+      </select>
+    {/if}
+    {#if modes.length > 1}
+      <select
+        bind:value={mode}
+        disabled={running}
+        class="shrink-0 rounded border border-border bg-transparent px-1 py-0.5 font-mono text-micro text-muted-foreground outline-none disabled:opacity-50"
+        title="Mode for this language. Empty is the interpreter's own default."
+        aria-label="Mode"
+      >
+        <option value="">default</option>
+        {#each modes as m (m)}
+          <option value={m}>{m}</option>
+        {/each}
+      </select>
+    {/if}
     <span class="shrink-0 font-mono text-primary">$</span>
     <input
       bind:this={inputEl}
