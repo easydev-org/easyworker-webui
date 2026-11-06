@@ -18,11 +18,11 @@ name: release
 
 on:
   push:
-    tags: ["v*"]
+    tags: ['v*']
   workflow_dispatch:
     inputs:
       tag:
-        description: "Existing tag to (re)build the asset for"
+        description: 'Existing tag to (re)build the asset for'
         required: true
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: '22'
           cache: npm
 
       - run: npm ci --no-audit --no-fund

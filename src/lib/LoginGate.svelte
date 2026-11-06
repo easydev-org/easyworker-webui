@@ -79,7 +79,7 @@
 <div class="flex h-dvh items-center justify-center p-5">
   <form
     class="flex w-full max-w-[420px] flex-col gap-4 rounded-xl border border-border bg-card p-6"
-    onsubmit={(e) => {
+    onsubmit={e => {
       e.preventDefault()
       void connect()
     }}
@@ -97,7 +97,13 @@
 
     <div class="flex flex-col gap-1.5">
       <Label for="gate-token">Bearer token</Label>
-      <Input id="gate-token" type="password" bind:value={token} disabled={busy} placeholder="token" />
+      <Input
+        id="gate-token"
+        type="password"
+        bind:value={token}
+        disabled={busy}
+        placeholder="token"
+      />
     </div>
     {#if err}<p class="text-meta text-destructive" role="alert">{err}</p>{/if}
     <Button type="submit" class="w-full" disabled={busy || !token.trim()}>
@@ -106,7 +112,8 @@
 
     {#if needsCode}
       <div class="flex items-center gap-2 text-micro text-muted-foreground">
-        <span class="h-px flex-1 bg-border"></span>or claim this worker<span class="h-px flex-1 bg-border"
+        <span class="h-px flex-1 bg-border"></span>or claim this worker<span
+          class="h-px flex-1 bg-border"
         ></span>
       </div>
       <p class="text-meta text-muted-foreground">
@@ -117,7 +124,13 @@
         <Label for="gate-code">One-time code</Label>
         <Input id="gate-code" bind:value={code} disabled={busy} placeholder="code" />
       </div>
-      <Button type="button" variant="outline" class="w-full" disabled={busy || !code.trim()} onclick={claim}>
+      <Button
+        type="button"
+        variant="outline"
+        class="w-full"
+        disabled={busy || !code.trim()}
+        onclick={claim}
+      >
         Claim
       </Button>
     {/if}

@@ -47,10 +47,7 @@ export function rootOf(abs: string): string {
 }
 
 /** Resolve `target` (may be relative, `~`, or absolute) against `base`. */
-export function resolveAbs(
-  base: string,
-  target: string | null | undefined,
-): string {
+export function resolveAbs(base: string, target: string | null | undefined): string {
   const t = String(target ?? '').trim()
   if (t === '' || t === '~') return anchors.workspace || '/'
   if (t === '~/') return anchors.workspace || '/'
@@ -96,9 +93,7 @@ export function crumbsOf(abs: string): { name: string; path: string }[] {
     return out
   }
   const root = rootOf(abs)
-  const out = [
-    { name: root === '/' ? '/' : root.replace(/\/$/, ''), path: root },
-  ]
+  const out = [{ name: root === '/' ? '/' : root.replace(/\/$/, ''), path: root }]
   let acc = root.replace(/\/$/, '')
   for (const seg of abs.slice(root.length).split('/').filter(Boolean)) {
     acc += `/${seg}`

@@ -29,67 +29,70 @@
 // Server: easyworker binary (also the binary injected into cluster sandboxes;
 // WORKER_PORT pins the listen port). Client: ext-ops (ops-extension).
 
-import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
-import type { Message } from "@bufbuild/protobuf";
+import type { GenFile, GenMessage, GenService } from '@bufbuild/protobuf/codegenv2'
+import { fileDesc, messageDesc, serviceDesc } from '@bufbuild/protobuf/codegenv2'
+import type { Message } from '@bufbuild/protobuf'
 
 /**
  * Describes the file worker/v1/worker.proto.
  */
-export const file_worker_v1_worker: GenFile = /*@__PURE__*/
-  fileDesc("ChZ3b3JrZXIvdjEvd29ya2VyLnByb3RvEgl3b3JrZXIudjEiDQoLSW5mb1JlcXVlc3Qi3QEKDEluZm9SZXNwb25zZRIKCgJvcxgBIAEoCRIMCgRhcmNoGAIgASgJEg0KBXNoZWxsGAMgASgJEhEKCXdvcmtzcGFjZRgEIAEoCRIPCgdib290X2lkGAUgASgJEhUKDWRyb3BwZWRfbGluZXMYBiABKAMSDAoEaG9tZRgHIAEoCRItCgxjYXBhYmlsaXRpZXMYCCABKAsyFy53b3JrZXIudjEuQ2FwYWJpbGl0aWVzEiwKDGludGVycHJldGVycxgJIAMoCzIWLndvcmtlci52MS5JbnRlcnByZXRlciJVCgtJbnRlcnByZXRlchIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEgwKBHBhdGgYAyABKAkSDwoHdmVyc2lvbhgEIAEoCRINCgVtb2RlcxgFIAMoCSLKAQoMQ2FwYWJpbGl0aWVzEg8KB2Rlc2t0b3AYASABKAgSDwoHZGlzcGxheRgCIAEoCRINCgVub3ZuYxgDIAEoCBISCgpub3ZuY19wb3J0GAQgASgFEhAKCGVzdF9odHRwGAsgASgIEg0KBXhhMTF5GAUgASgIEg4KBmRpc3RybxgGIAEoCRIQCghwbGF0Zm9ybRgHIAEoCRIQCghjb21wdXRlchgIIAEoCBILCgNnaXQYCSABKAgSEwoLZ2l0X3ZlcnNpb24YCiABKAkigAEKDkV4ZWN1dGVSZXF1ZXN0Eg8KB2NvbW1hbmQYASABKAkSDwoHd29ya2RpchgCIAEoCRISCgp0aW1lb3V0X21zGAQgASgFEhEKCW5hbWVzcGFjZRgFIAEoCRIMCgRsYW5nGAYgASgJEgwKBG1vZGUYByABKAlKBAgDEARSA2VudiIhCg9FeGVjdXRlUmVzcG9uc2USDgoGam9iX2lkGAEgASgJIpMBCghKb2JFbnRyeRIKCgJpZBgBIAEoCRIPCgdjb21tYW5kGAIgASgJEhEKCW5hbWVzcGFjZRgHIAEoCRIMCgRsYW5nGAggASgJEg0KBXN0YXRlGAMgASgJEhEKCWV4aXRfY29kZRgEIAEoBRISCgpzdGFydGVkX2F0GAUgASgDEhMKC2ZpbmlzaGVkX2F0GAYgASgDIjMKD0xpc3RKb2JzUmVxdWVzdBINCgVsaW1pdBgBIAEoBRIRCgluYW1lc3BhY2UYAiABKAkiNQoQTGlzdEpvYnNSZXNwb25zZRIhCgRqb2JzGAEgAygLMhMud29ya2VyLnYxLkpvYkVudHJ5IiEKD1dhdGNoSm9iUmVxdWVzdBIOCgZqb2JfaWQYASABKAkimgEKEFdhdGNoSm9iUmVzcG9uc2USEAoGb3V0cHV0GAEgASgJSAASMAoEZG9uZRgCIAEoCzIgLndvcmtlci52MS5XYXRjaEpvYlJlc3BvbnNlLkRvbmVIABo5CgREb25lEhEKCWV4aXRfY29kZRgBIAEoBRIOCgZzdGRvdXQYAiABKAkSDgoGc3RkZXJyGAMgASgJQgcKBWV2ZW50Ik4KEEpvYk91dHB1dFJlcXVlc3QSDgoGam9iX2lkGAEgASgJEg0KBXN0YXJ0GAIgASgFEgsKA2VuZBgDIAEoBRIOCgZzdHJlYW0YBCABKAkiawoRSm9iT3V0cHV0UmVzcG9uc2USDQoFbGluZXMYASADKAkSEwoLdG90YWxfbGluZXMYAiABKAUSEgoKc3RhcnRfbGluZRgDIAEoBRIQCghlbmRfbGluZRgEIAEoBRIMCgRkb25lGAUgASgIIjQKDkpvYldhaXRSZXF1ZXN0Eg4KBmpvYl9pZBgBIAEoCRISCgp0aW1lb3V0X21zGAIgASgFIjMKD0pvYldhaXRSZXNwb25zZRINCgVzdGF0ZRgBIAEoCRIRCglleGl0X2NvZGUYAiABKAUiPgoPSm9iU3RkaW5SZXF1ZXN0Eg4KBmpvYl9pZBgBIAEoCRIMCgRkYXRhGAIgASgMEg0KBWNsb3NlGAMgASgIIh4KEEpvYlN0ZGluUmVzcG9uc2USCgoCb2sYASABKAgiIAoOSm9iS2lsbFJlcXVlc3QSDgoGam9iX2lkGAEgASgJIh0KD0pvYktpbGxSZXNwb25zZRIKCgJvaxgBIAEoCCJFCg9GaWxlUmVhZFJlcXVlc3QSDAoEcGF0aBgBIAEoCRISCgpzdGFydF9saW5lGAIgASgFEhAKCGVuZF9saW5lGAMgASgFIl4KEEZpbGVSZWFkUmVzcG9uc2USDwoHY29udGVudBgBIAEoDBITCgt0b3RhbF9saW5lcxgCIAEoBRISCgpzdGFydF9saW5lGAMgASgFEhAKCGVuZF9saW5lGAQgASgFIjEKEEZpbGVXcml0ZVJlcXVlc3QSDAoEcGF0aBgBIAEoCRIPCgdjb250ZW50GAIgASgMIh8KEUZpbGVXcml0ZVJlc3BvbnNlEgoKAm9rGAEgASgIIiEKEUZpbGVEZWxldGVSZXF1ZXN0EgwKBHBhdGgYASABKAkiIAoSRmlsZURlbGV0ZVJlc3BvbnNlEgoKAm9rGAEgASgIIisKD0ZpbGVNb3ZlUmVxdWVzdBIMCgRmcm9tGAEgASgJEgoKAnRvGAIgASgJIh4KEEZpbGVNb3ZlUmVzcG9uc2USCgoCb2sYASABKAgiKwoPRmlsZUNvcHlSZXF1ZXN0EgwKBGZyb20YASABKAkSCgoCdG8YAiABKAkiHgoQRmlsZUNvcHlSZXNwb25zZRIKCgJvaxgBIAEoCCI3CglGaWxlRW50cnkSDAoEcGF0aBgBIAEoCRIMCgRzaXplGAIgASgDEg4KBmlzX2RpchgDIAEoCCI9Cg9GaWxlTGlzdFJlcXVlc3QSDAoEcGF0aBgBIAEoCRINCgVkZXB0aBgCIAEoBRINCgVsaW1pdBgDIAEoBSJaChBGaWxlTGlzdFJlc3BvbnNlEg4KBmlzX2RpchgBIAEoCBIjCgVmaWxlcxgCIAMoCzIULndvcmtlci52MS5GaWxlRW50cnkSEQoJdHJ1bmNhdGVkGAMgASgIIk4KEVN5bmNGb2xkZXJSZXF1ZXN0Eg8KB3RhcmJhbGwYASABKAwSDAoEZGVzdBgCIAEoCRINCgVjbGVhbhgDIAEoCBILCgNyZXYYBCABKAkiMQoSU3luY0ZvbGRlclJlc3BvbnNlEg0KBWZpbGVzGAEgASgFEgwKBHJvb3QYAiABKAkiFQoTRW5yb2xsU3RhdHVzUmVxdWVzdCJjChRFbnJvbGxTdGF0dXNSZXNwb25zZRIPCgdjbGFpbWVkGAEgASgIEhIKCm5lZWRzX2NvZGUYAiABKAgSFQoNcHJlYXV0aG9yaXplZBgDIAEoCBIPCgdib290X2lkGAQgASgJIjQKEkVucm9sbENsYWltUmVxdWVzdBIMCgRjb2RlGAEgASgJEhAKCG93bmVyX2lkGAIgASgJIjAKE0Vucm9sbENsYWltUmVzcG9uc2USCgoCb2sYASABKAgSDQoFdG9rZW4YAiABKAkiKgoWRW5yb2xsVW5yZWxlYXNlUmVxdWVzdBIQCghvd25lcl9pZBgBIAEoCSIzChdFbnJvbGxVbnJlbGVhc2VSZXNwb25zZRIKCgJvaxgBIAEoCBIMCgRjb2RlGAIgASgJMpkICg1Xb3JrZXJTZXJ2aWNlEjcKBEluZm8SFi53b3JrZXIudjEuSW5mb1JlcXVlc3QaFy53b3JrZXIudjEuSW5mb1Jlc3BvbnNlEkAKB0V4ZWN1dGUSGS53b3JrZXIudjEuRXhlY3V0ZVJlcXVlc3QaGi53b3JrZXIudjEuRXhlY3V0ZVJlc3BvbnNlEkMKCExpc3RKb2JzEhoud29ya2VyLnYxLkxpc3RKb2JzUmVxdWVzdBobLndvcmtlci52MS5MaXN0Sm9ic1Jlc3BvbnNlEkUKCFdhdGNoSm9iEhoud29ya2VyLnYxLldhdGNoSm9iUmVxdWVzdBobLndvcmtlci52MS5XYXRjaEpvYlJlc3BvbnNlMAESRgoJSm9iT3V0cHV0Ehsud29ya2VyLnYxLkpvYk91dHB1dFJlcXVlc3QaHC53b3JrZXIudjEuSm9iT3V0cHV0UmVzcG9uc2USQAoHSm9iV2FpdBIZLndvcmtlci52MS5Kb2JXYWl0UmVxdWVzdBoaLndvcmtlci52MS5Kb2JXYWl0UmVzcG9uc2USQwoISm9iU3RkaW4SGi53b3JrZXIudjEuSm9iU3RkaW5SZXF1ZXN0Ghsud29ya2VyLnYxLkpvYlN0ZGluUmVzcG9uc2USQAoHSm9iS2lsbBIZLndvcmtlci52MS5Kb2JLaWxsUmVxdWVzdBoaLndvcmtlci52MS5Kb2JLaWxsUmVzcG9uc2USQwoIRmlsZVJlYWQSGi53b3JrZXIudjEuRmlsZVJlYWRSZXF1ZXN0Ghsud29ya2VyLnYxLkZpbGVSZWFkUmVzcG9uc2USRgoJRmlsZVdyaXRlEhsud29ya2VyLnYxLkZpbGVXcml0ZVJlcXVlc3QaHC53b3JrZXIudjEuRmlsZVdyaXRlUmVzcG9uc2USSQoKRmlsZURlbGV0ZRIcLndvcmtlci52MS5GaWxlRGVsZXRlUmVxdWVzdBodLndvcmtlci52MS5GaWxlRGVsZXRlUmVzcG9uc2USQwoIRmlsZU1vdmUSGi53b3JrZXIudjEuRmlsZU1vdmVSZXF1ZXN0Ghsud29ya2VyLnYxLkZpbGVNb3ZlUmVzcG9uc2USQwoIRmlsZUNvcHkSGi53b3JrZXIudjEuRmlsZUNvcHlSZXF1ZXN0Ghsud29ya2VyLnYxLkZpbGVDb3B5UmVzcG9uc2USQwoIRmlsZUxpc3QSGi53b3JrZXIudjEuRmlsZUxpc3RSZXF1ZXN0Ghsud29ya2VyLnYxLkZpbGVMaXN0UmVzcG9uc2USSQoKU3luY0ZvbGRlchIcLndvcmtlci52MS5TeW5jRm9sZGVyUmVxdWVzdBodLndvcmtlci52MS5TeW5jRm9sZGVyUmVzcG9uc2Uy9QEKDFdvcmtlckVucm9sbBJJCgZTdGF0dXMSHi53b3JrZXIudjEuRW5yb2xsU3RhdHVzUmVxdWVzdBofLndvcmtlci52MS5FbnJvbGxTdGF0dXNSZXNwb25zZRJGCgVDbGFpbRIdLndvcmtlci52MS5FbnJvbGxDbGFpbVJlcXVlc3QaHi53b3JrZXIudjEuRW5yb2xsQ2xhaW1SZXNwb25zZRJSCglVbnJlbGVhc2USIS53b3JrZXIudjEuRW5yb2xsVW5yZWxlYXNlUmVxdWVzdBoiLndvcmtlci52MS5FbnJvbGxVbnJlbGVhc2VSZXNwb25zZUI6WjhnaXRodWIuY29tL2Vhc3lkZXYtb3JnL2Vhc3l3b3JrZXIvZ2VuL3dvcmtlci92MTt3b3JrZXJ2MWIGcHJvdG8z");
+export const file_worker_v1_worker: GenFile =
+  /*@__PURE__*/
+  fileDesc(
+    'ChZ3b3JrZXIvdjEvd29ya2VyLnByb3RvEgl3b3JrZXIudjEiDQoLSW5mb1JlcXVlc3Qi3QEKDEluZm9SZXNwb25zZRIKCgJvcxgBIAEoCRIMCgRhcmNoGAIgASgJEg0KBXNoZWxsGAMgASgJEhEKCXdvcmtzcGFjZRgEIAEoCRIPCgdib290X2lkGAUgASgJEhUKDWRyb3BwZWRfbGluZXMYBiABKAMSDAoEaG9tZRgHIAEoCRItCgxjYXBhYmlsaXRpZXMYCCABKAsyFy53b3JrZXIudjEuQ2FwYWJpbGl0aWVzEiwKDGludGVycHJldGVycxgJIAMoCzIWLndvcmtlci52MS5JbnRlcnByZXRlciJVCgtJbnRlcnByZXRlchIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEgwKBHBhdGgYAyABKAkSDwoHdmVyc2lvbhgEIAEoCRINCgVtb2RlcxgFIAMoCSLKAQoMQ2FwYWJpbGl0aWVzEg8KB2Rlc2t0b3AYASABKAgSDwoHZGlzcGxheRgCIAEoCRINCgVub3ZuYxgDIAEoCBISCgpub3ZuY19wb3J0GAQgASgFEhAKCGVzdF9odHRwGAsgASgIEg0KBXhhMTF5GAUgASgIEg4KBmRpc3RybxgGIAEoCRIQCghwbGF0Zm9ybRgHIAEoCRIQCghjb21wdXRlchgIIAEoCBILCgNnaXQYCSABKAgSEwoLZ2l0X3ZlcnNpb24YCiABKAkigAEKDkV4ZWN1dGVSZXF1ZXN0Eg8KB2NvbW1hbmQYASABKAkSDwoHd29ya2RpchgCIAEoCRISCgp0aW1lb3V0X21zGAQgASgFEhEKCW5hbWVzcGFjZRgFIAEoCRIMCgRsYW5nGAYgASgJEgwKBG1vZGUYByABKAlKBAgDEARSA2VudiIhCg9FeGVjdXRlUmVzcG9uc2USDgoGam9iX2lkGAEgASgJIpMBCghKb2JFbnRyeRIKCgJpZBgBIAEoCRIPCgdjb21tYW5kGAIgASgJEhEKCW5hbWVzcGFjZRgHIAEoCRIMCgRsYW5nGAggASgJEg0KBXN0YXRlGAMgASgJEhEKCWV4aXRfY29kZRgEIAEoBRISCgpzdGFydGVkX2F0GAUgASgDEhMKC2ZpbmlzaGVkX2F0GAYgASgDIjMKD0xpc3RKb2JzUmVxdWVzdBINCgVsaW1pdBgBIAEoBRIRCgluYW1lc3BhY2UYAiABKAkiNQoQTGlzdEpvYnNSZXNwb25zZRIhCgRqb2JzGAEgAygLMhMud29ya2VyLnYxLkpvYkVudHJ5IiEKD1dhdGNoSm9iUmVxdWVzdBIOCgZqb2JfaWQYASABKAkimgEKEFdhdGNoSm9iUmVzcG9uc2USEAoGb3V0cHV0GAEgASgJSAASMAoEZG9uZRgCIAEoCzIgLndvcmtlci52MS5XYXRjaEpvYlJlc3BvbnNlLkRvbmVIABo5CgREb25lEhEKCWV4aXRfY29kZRgBIAEoBRIOCgZzdGRvdXQYAiABKAkSDgoGc3RkZXJyGAMgASgJQgcKBWV2ZW50Ik4KEEpvYk91dHB1dFJlcXVlc3QSDgoGam9iX2lkGAEgASgJEg0KBXN0YXJ0GAIgASgFEgsKA2VuZBgDIAEoBRIOCgZzdHJlYW0YBCABKAkiawoRSm9iT3V0cHV0UmVzcG9uc2USDQoFbGluZXMYASADKAkSEwoLdG90YWxfbGluZXMYAiABKAUSEgoKc3RhcnRfbGluZRgDIAEoBRIQCghlbmRfbGluZRgEIAEoBRIMCgRkb25lGAUgASgIIjQKDkpvYldhaXRSZXF1ZXN0Eg4KBmpvYl9pZBgBIAEoCRISCgp0aW1lb3V0X21zGAIgASgFIjMKD0pvYldhaXRSZXNwb25zZRINCgVzdGF0ZRgBIAEoCRIRCglleGl0X2NvZGUYAiABKAUiPgoPSm9iU3RkaW5SZXF1ZXN0Eg4KBmpvYl9pZBgBIAEoCRIMCgRkYXRhGAIgASgMEg0KBWNsb3NlGAMgASgIIh4KEEpvYlN0ZGluUmVzcG9uc2USCgoCb2sYASABKAgiIAoOSm9iS2lsbFJlcXVlc3QSDgoGam9iX2lkGAEgASgJIh0KD0pvYktpbGxSZXNwb25zZRIKCgJvaxgBIAEoCCJFCg9GaWxlUmVhZFJlcXVlc3QSDAoEcGF0aBgBIAEoCRISCgpzdGFydF9saW5lGAIgASgFEhAKCGVuZF9saW5lGAMgASgFIl4KEEZpbGVSZWFkUmVzcG9uc2USDwoHY29udGVudBgBIAEoDBITCgt0b3RhbF9saW5lcxgCIAEoBRISCgpzdGFydF9saW5lGAMgASgFEhAKCGVuZF9saW5lGAQgASgFIjEKEEZpbGVXcml0ZVJlcXVlc3QSDAoEcGF0aBgBIAEoCRIPCgdjb250ZW50GAIgASgMIh8KEUZpbGVXcml0ZVJlc3BvbnNlEgoKAm9rGAEgASgIIiEKEUZpbGVEZWxldGVSZXF1ZXN0EgwKBHBhdGgYASABKAkiIAoSRmlsZURlbGV0ZVJlc3BvbnNlEgoKAm9rGAEgASgIIisKD0ZpbGVNb3ZlUmVxdWVzdBIMCgRmcm9tGAEgASgJEgoKAnRvGAIgASgJIh4KEEZpbGVNb3ZlUmVzcG9uc2USCgoCb2sYASABKAgiKwoPRmlsZUNvcHlSZXF1ZXN0EgwKBGZyb20YASABKAkSCgoCdG8YAiABKAkiHgoQRmlsZUNvcHlSZXNwb25zZRIKCgJvaxgBIAEoCCI3CglGaWxlRW50cnkSDAoEcGF0aBgBIAEoCRIMCgRzaXplGAIgASgDEg4KBmlzX2RpchgDIAEoCCI9Cg9GaWxlTGlzdFJlcXVlc3QSDAoEcGF0aBgBIAEoCRINCgVkZXB0aBgCIAEoBRINCgVsaW1pdBgDIAEoBSJaChBGaWxlTGlzdFJlc3BvbnNlEg4KBmlzX2RpchgBIAEoCBIjCgVmaWxlcxgCIAMoCzIULndvcmtlci52MS5GaWxlRW50cnkSEQoJdHJ1bmNhdGVkGAMgASgIIk4KEVN5bmNGb2xkZXJSZXF1ZXN0Eg8KB3RhcmJhbGwYASABKAwSDAoEZGVzdBgCIAEoCRINCgVjbGVhbhgDIAEoCBILCgNyZXYYBCABKAkiMQoSU3luY0ZvbGRlclJlc3BvbnNlEg0KBWZpbGVzGAEgASgFEgwKBHJvb3QYAiABKAkiFQoTRW5yb2xsU3RhdHVzUmVxdWVzdCJjChRFbnJvbGxTdGF0dXNSZXNwb25zZRIPCgdjbGFpbWVkGAEgASgIEhIKCm5lZWRzX2NvZGUYAiABKAgSFQoNcHJlYXV0aG9yaXplZBgDIAEoCBIPCgdib290X2lkGAQgASgJIjQKEkVucm9sbENsYWltUmVxdWVzdBIMCgRjb2RlGAEgASgJEhAKCG93bmVyX2lkGAIgASgJIjAKE0Vucm9sbENsYWltUmVzcG9uc2USCgoCb2sYASABKAgSDQoFdG9rZW4YAiABKAkiKgoWRW5yb2xsVW5yZWxlYXNlUmVxdWVzdBIQCghvd25lcl9pZBgBIAEoCSIzChdFbnJvbGxVbnJlbGVhc2VSZXNwb25zZRIKCgJvaxgBIAEoCBIMCgRjb2RlGAIgASgJMpkICg1Xb3JrZXJTZXJ2aWNlEjcKBEluZm8SFi53b3JrZXIudjEuSW5mb1JlcXVlc3QaFy53b3JrZXIudjEuSW5mb1Jlc3BvbnNlEkAKB0V4ZWN1dGUSGS53b3JrZXIudjEuRXhlY3V0ZVJlcXVlc3QaGi53b3JrZXIudjEuRXhlY3V0ZVJlc3BvbnNlEkMKCExpc3RKb2JzEhoud29ya2VyLnYxLkxpc3RKb2JzUmVxdWVzdBobLndvcmtlci52MS5MaXN0Sm9ic1Jlc3BvbnNlEkUKCFdhdGNoSm9iEhoud29ya2VyLnYxLldhdGNoSm9iUmVxdWVzdBobLndvcmtlci52MS5XYXRjaEpvYlJlc3BvbnNlMAESRgoJSm9iT3V0cHV0Ehsud29ya2VyLnYxLkpvYk91dHB1dFJlcXVlc3QaHC53b3JrZXIudjEuSm9iT3V0cHV0UmVzcG9uc2USQAoHSm9iV2FpdBIZLndvcmtlci52MS5Kb2JXYWl0UmVxdWVzdBoaLndvcmtlci52MS5Kb2JXYWl0UmVzcG9uc2USQwoISm9iU3RkaW4SGi53b3JrZXIudjEuSm9iU3RkaW5SZXF1ZXN0Ghsud29ya2VyLnYxLkpvYlN0ZGluUmVzcG9uc2USQAoHSm9iS2lsbBIZLndvcmtlci52MS5Kb2JLaWxsUmVxdWVzdBoaLndvcmtlci52MS5Kb2JLaWxsUmVzcG9uc2USQwoIRmlsZVJlYWQSGi53b3JrZXIudjEuRmlsZVJlYWRSZXF1ZXN0Ghsud29ya2VyLnYxLkZpbGVSZWFkUmVzcG9uc2USRgoJRmlsZVdyaXRlEhsud29ya2VyLnYxLkZpbGVXcml0ZVJlcXVlc3QaHC53b3JrZXIudjEuRmlsZVdyaXRlUmVzcG9uc2USSQoKRmlsZURlbGV0ZRIcLndvcmtlci52MS5GaWxlRGVsZXRlUmVxdWVzdBodLndvcmtlci52MS5GaWxlRGVsZXRlUmVzcG9uc2USQwoIRmlsZU1vdmUSGi53b3JrZXIudjEuRmlsZU1vdmVSZXF1ZXN0Ghsud29ya2VyLnYxLkZpbGVNb3ZlUmVzcG9uc2USQwoIRmlsZUNvcHkSGi53b3JrZXIudjEuRmlsZUNvcHlSZXF1ZXN0Ghsud29ya2VyLnYxLkZpbGVDb3B5UmVzcG9uc2USQwoIRmlsZUxpc3QSGi53b3JrZXIudjEuRmlsZUxpc3RSZXF1ZXN0Ghsud29ya2VyLnYxLkZpbGVMaXN0UmVzcG9uc2USSQoKU3luY0ZvbGRlchIcLndvcmtlci52MS5TeW5jRm9sZGVyUmVxdWVzdBodLndvcmtlci52MS5TeW5jRm9sZGVyUmVzcG9uc2Uy9QEKDFdvcmtlckVucm9sbBJJCgZTdGF0dXMSHi53b3JrZXIudjEuRW5yb2xsU3RhdHVzUmVxdWVzdBofLndvcmtlci52MS5FbnJvbGxTdGF0dXNSZXNwb25zZRJGCgVDbGFpbRIdLndvcmtlci52MS5FbnJvbGxDbGFpbVJlcXVlc3QaHi53b3JrZXIudjEuRW5yb2xsQ2xhaW1SZXNwb25zZRJSCglVbnJlbGVhc2USIS53b3JrZXIudjEuRW5yb2xsVW5yZWxlYXNlUmVxdWVzdBoiLndvcmtlci52MS5FbnJvbGxVbnJlbGVhc2VSZXNwb25zZUI6WjhnaXRodWIuY29tL2Vhc3lkZXYtb3JnL2Vhc3l3b3JrZXIvZ2VuL3dvcmtlci92MTt3b3JrZXJ2MWIGcHJvdG8z',
+  )
 
 /**
  * @generated from message worker.v1.InfoRequest
  */
-export type InfoRequest = Message<"worker.v1.InfoRequest"> & {
-};
+export type InfoRequest = Message<'worker.v1.InfoRequest'> & {}
 
 /**
  * Describes the message worker.v1.InfoRequest.
  * Use `create(InfoRequestSchema)` to create a new message.
  */
-export const InfoRequestSchema: GenMessage<InfoRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 0);
+export const InfoRequestSchema: GenMessage<InfoRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 0)
 
 /**
  * @generated from message worker.v1.InfoResponse
  */
-export type InfoResponse = Message<"worker.v1.InfoResponse"> & {
+export type InfoResponse = Message<'worker.v1.InfoResponse'> & {
   /**
    * runtime.GOOS
    *
    * @generated from field: string os = 1;
    */
-  os: string;
+  os: string
 
   /**
    * runtime.GOARCH
    *
    * @generated from field: string arch = 2;
    */
-  arch: string;
+  arch: string
 
   /**
    * always "builtin(mvdan-sh)" — reported for the model
    *
    * @generated from field: string shell = 3;
    */
-  shell: string;
+  shell: string
 
   /**
    * absolute workspace root (default cwd for execute)
    *
    * @generated from field: string workspace = 4;
    */
-  workspace: string;
+  workspace: string
 
   /**
    * per-process UUID: easylab compares it against the
    *
    * @generated from field: string boot_id = 5;
    */
-  bootId: string;
+  bootId: string
 
   /**
    * boot_id recorded at sync time to detect worker
@@ -99,7 +102,7 @@ export type InfoResponse = Message<"worker.v1.InfoResponse"> & {
    *
    * @generated from field: int64 dropped_lines = 6;
    */
-  droppedLines: bigint;
+  droppedLines: bigint
 
   /**
    * full + ring overflow) since process start; a
@@ -109,7 +112,7 @@ export type InfoResponse = Message<"worker.v1.InfoResponse"> & {
    *
    * @generated from field: string home = 7;
    */
-  home: string;
+  home: string
 
   /**
    * be empty when the platform has no home concept
@@ -119,7 +122,7 @@ export type InfoResponse = Message<"worker.v1.InfoResponse"> & {
    *
    * @generated from field: worker.v1.Capabilities capabilities = 8;
    */
-  capabilities?: Capabilities | undefined;
+  capabilities?: Capabilities | undefined
 
   /**
    * Interpreters the engine can actually run, probed at request time. This is
@@ -129,49 +132,50 @@ export type InfoResponse = Message<"worker.v1.InfoResponse"> & {
    *
    * @generated from field: repeated worker.v1.Interpreter interpreters = 9;
    */
-  interpreters: Interpreter[];
-};
+  interpreters: Interpreter[]
+}
 
 /**
  * Describes the message worker.v1.InfoResponse.
  * Use `create(InfoResponseSchema)` to create a new message.
  */
-export const InfoResponseSchema: GenMessage<InfoResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 1);
+export const InfoResponseSchema: GenMessage<InfoResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 1)
 
 /**
  * Interpreter is one language the engine can drive on THIS host.
  *
  * @generated from message worker.v1.Interpreter
  */
-export type Interpreter = Message<"worker.v1.Interpreter"> & {
+export type Interpreter = Message<'worker.v1.Interpreter'> & {
   /**
    * "bash", "python", "node", ...
    *
    * @generated from field: string id = 1;
    */
-  id: string;
+  id: string
 
   /**
    * "Bash", "Python", ...
    *
    * @generated from field: string name = 2;
    */
-  name: string;
+  name: string
 
   /**
    * resolved executable
    *
    * @generated from field: string path = 3;
    */
-  path: string;
+  path: string
 
   /**
    * as reported by the interpreter ("" when it has none)
    *
    * @generated from field: string version = 4;
    */
-  version: string;
+  version: string
 
   /**
    * Named execution modes this language declares (node: cjs/esm; bash: posix).
@@ -180,15 +184,16 @@ export type Interpreter = Message<"worker.v1.Interpreter"> & {
    *
    * @generated from field: repeated string modes = 5;
    */
-  modes: string[];
-};
+  modes: string[]
+}
 
 /**
  * Describes the message worker.v1.Interpreter.
  * Use `create(InterpreterSchema)` to create a new message.
  */
-export const InterpreterSchema: GenMessage<Interpreter> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 2);
+export const InterpreterSchema: GenMessage<Interpreter> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 2)
 
 /**
  * Capabilities describes optional runtime features present in the sandbox.
@@ -197,35 +202,35 @@ export const InterpreterSchema: GenMessage<Interpreter> = /*@__PURE__*/
  *
  * @generated from message worker.v1.Capabilities
  */
-export type Capabilities = Message<"worker.v1.Capabilities"> & {
+export type Capabilities = Message<'worker.v1.Capabilities'> & {
   /**
    * A graphical desktop is present: DISPLAY (X11) or WAYLAND_DISPLAY (Wayland)
    * is set in the worker's environment (jobs inherit it).
    *
    * @generated from field: bool desktop = 1;
    */
-  desktop: boolean;
+  desktop: boolean
 
   /**
    * "x11" | "wayland" | "" — which display protocol `desktop` refers to.
    *
    * @generated from field: string display = 2;
    */
-  display: string;
+  display: string
 
   /**
    * A noVNC/web-VNC endpoint is listening on 127.0.0.1 (same pod).
    *
    * @generated from field: bool novnc = 3;
    */
-  novnc: boolean;
+  novnc: boolean
 
   /**
    * The port `novnc` was detected on (0 when absent; default probe 6080).
    *
    * @generated from field: int32 novnc_port = 4;
    */
-  novncPort: number;
+  novncPort: number
 
   /**
    * An HTTP easystream daemon answers on loopback, so the worker can proxy its
@@ -235,21 +240,21 @@ export type Capabilities = Message<"worker.v1.Capabilities"> & {
    *
    * @generated from field: bool est_http = 11;
    */
-  estHttp: boolean;
+  estHttp: boolean
 
   /**
    * The `xa11y` accessibility CLI is on PATH (native-app automation, X11).
    *
    * @generated from field: bool xa11y = 5;
    */
-  xa11y: boolean;
+  xa11y: boolean
 
   /**
    * /etc/os-release ID (e.g. "debian", "alpine", "ubuntu"); "" if unknown.
    *
    * @generated from field: string distro = 6;
    */
-  distro: string;
+  distro: string
 
   /**
    * Resolved GUI platform for the ComputerService:
@@ -257,14 +262,14 @@ export type Capabilities = Message<"worker.v1.Capabilities"> & {
    *
    * @generated from field: string platform = 7;
    */
-  platform: string;
+  platform: string
 
   /**
    * The ComputerService is usable (a GUI platform with its tooling present).
    *
    * @generated from field: bool computer = 8;
    */
-  computer: boolean;
+  computer: boolean
 
   /**
    * `git` is on PATH, so jobs can clone/commit. Probed with `git --version`
@@ -272,7 +277,7 @@ export type Capabilities = Message<"worker.v1.Capabilities"> & {
    *
    * @generated from field: bool git = 9;
    */
-  git: boolean;
+  git: boolean
 
   /**
    * The git version string reported by `git --version` (e.g. "2.55.0"),
@@ -280,33 +285,34 @@ export type Capabilities = Message<"worker.v1.Capabilities"> & {
    *
    * @generated from field: string git_version = 10;
    */
-  gitVersion: string;
-};
+  gitVersion: string
+}
 
 /**
  * Describes the message worker.v1.Capabilities.
  * Use `create(CapabilitiesSchema)` to create a new message.
  */
-export const CapabilitiesSchema: GenMessage<Capabilities> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 3);
+export const CapabilitiesSchema: GenMessage<Capabilities> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 3)
 
 /**
  * Execute always registers a job (no fast/slow split, same as legacy worker).
  *
  * @generated from message worker.v1.ExecuteRequest
  */
-export type ExecuteRequest = Message<"worker.v1.ExecuteRequest"> & {
+export type ExecuteRequest = Message<'worker.v1.ExecuteRequest'> & {
   /**
    * @generated from field: string command = 1;
    */
-  command: string;
+  command: string
 
   /**
    * relative to the workspace root
    *
    * @generated from field: string workdir = 2;
    */
-  workdir: string;
+  workdir: string
 
   /**
    * Optional wall-clock deadline: when set and exceeded, the job's whole
@@ -315,7 +321,7 @@ export type ExecuteRequest = Message<"worker.v1.ExecuteRequest"> & {
    *
    * @generated from field: int32 timeout_ms = 4;
    */
-  timeoutMs: number;
+  timeoutMs: number
 
   /**
    * Job namespace: "user" (default) for caller commands, "computer" for the
@@ -323,7 +329,7 @@ export type ExecuteRequest = Message<"worker.v1.ExecuteRequest"> & {
    *
    * @generated from field: string namespace = 5;
    */
-  namespace: string;
+  namespace: string
 
   /**
    * Language the command is written in. REQUIRED — there is no default.
@@ -337,7 +343,7 @@ export type ExecuteRequest = Message<"worker.v1.ExecuteRequest"> & {
    *
    * @generated from field: string lang = 6;
    */
-  lang: string;
+  lang: string
 
   /**
    * Named mode for that language ("" = the interpreter default). Sending a mode
@@ -345,137 +351,142 @@ export type ExecuteRequest = Message<"worker.v1.ExecuteRequest"> & {
    *
    * @generated from field: string mode = 7;
    */
-  mode: string;
-};
+  mode: string
+}
 
 /**
  * Describes the message worker.v1.ExecuteRequest.
  * Use `create(ExecuteRequestSchema)` to create a new message.
  */
-export const ExecuteRequestSchema: GenMessage<ExecuteRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 4);
+export const ExecuteRequestSchema: GenMessage<ExecuteRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 4)
 
 /**
  * @generated from message worker.v1.ExecuteResponse
  */
-export type ExecuteResponse = Message<"worker.v1.ExecuteResponse"> & {
+export type ExecuteResponse = Message<'worker.v1.ExecuteResponse'> & {
   /**
    * @generated from field: string job_id = 1;
    */
-  jobId: string;
-};
+  jobId: string
+}
 
 /**
  * Describes the message worker.v1.ExecuteResponse.
  * Use `create(ExecuteResponseSchema)` to create a new message.
  */
-export const ExecuteResponseSchema: GenMessage<ExecuteResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 5);
+export const ExecuteResponseSchema: GenMessage<ExecuteResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 5)
 
 /**
  * @generated from message worker.v1.JobEntry
  */
-export type JobEntry = Message<"worker.v1.JobEntry"> & {
+export type JobEntry = Message<'worker.v1.JobEntry'> & {
   /**
    * @generated from field: string id = 1;
    */
-  id: string;
+  id: string
 
   /**
    * @generated from field: string command = 2;
    */
-  command: string;
+  command: string
 
   /**
    * Namespace the job was registered under (see ExecuteRequest.namespace).
    *
    * @generated from field: string namespace = 7;
    */
-  namespace: string;
+  namespace: string
 
   /**
    * Language the command ran in, so a client can label a job without guessing.
    *
    * @generated from field: string lang = 8;
    */
-  lang: string;
+  lang: string
 
   /**
    * running | done | killed | failed
    *
    * @generated from field: string state = 3;
    */
-  state: string;
+  state: string
 
   /**
    * @generated from field: int32 exit_code = 4;
    */
-  exitCode: number;
+  exitCode: number
 
   /**
    * unix millis
    *
    * @generated from field: int64 started_at = 5;
    */
-  startedAt: bigint;
+  startedAt: bigint
 
   /**
    * unix millis, 0 while running
    *
    * @generated from field: int64 finished_at = 6;
    */
-  finishedAt: bigint;
-};
+  finishedAt: bigint
+}
 
 /**
  * Describes the message worker.v1.JobEntry.
  * Use `create(JobEntrySchema)` to create a new message.
  */
-export const JobEntrySchema: GenMessage<JobEntry> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 6);
+export const JobEntrySchema: GenMessage<JobEntry> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 6)
 
 /**
  * @generated from message worker.v1.ListJobsRequest
  */
-export type ListJobsRequest = Message<"worker.v1.ListJobsRequest"> & {
+export type ListJobsRequest = Message<'worker.v1.ListJobsRequest'> & {
   /**
    * newest-first cap; <=0 = 500 (server cap)
    *
    * @generated from field: int32 limit = 1;
    */
-  limit: number;
+  limit: number
 
   /**
    * Optional namespace filter ("" = all).
    *
    * @generated from field: string namespace = 2;
    */
-  namespace: string;
-};
+  namespace: string
+}
 
 /**
  * Describes the message worker.v1.ListJobsRequest.
  * Use `create(ListJobsRequestSchema)` to create a new message.
  */
-export const ListJobsRequestSchema: GenMessage<ListJobsRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 7);
+export const ListJobsRequestSchema: GenMessage<ListJobsRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 7)
 
 /**
  * @generated from message worker.v1.ListJobsResponse
  */
-export type ListJobsResponse = Message<"worker.v1.ListJobsResponse"> & {
+export type ListJobsResponse = Message<'worker.v1.ListJobsResponse'> & {
   /**
    * @generated from field: repeated worker.v1.JobEntry jobs = 1;
    */
-  jobs: JobEntry[];
-};
+  jobs: JobEntry[]
+}
 
 /**
  * Describes the message worker.v1.ListJobsResponse.
  * Use `create(ListJobsResponseSchema)` to create a new message.
  */
-export const ListJobsResponseSchema: GenMessage<ListJobsResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 8);
+export const ListJobsResponseSchema: GenMessage<ListJobsResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 8)
 
 /**
  * WatchJob is the Connect server-streaming replacement for the /ws/job SSE
@@ -484,158 +495,166 @@ export const ListJobsResponseSchema: GenMessage<ListJobsResponse> = /*@__PURE__*
  *
  * @generated from message worker.v1.WatchJobRequest
  */
-export type WatchJobRequest = Message<"worker.v1.WatchJobRequest"> & {
+export type WatchJobRequest = Message<'worker.v1.WatchJobRequest'> & {
   /**
    * @generated from field: string job_id = 1;
    */
-  jobId: string;
-};
+  jobId: string
+}
 
 /**
  * Describes the message worker.v1.WatchJobRequest.
  * Use `create(WatchJobRequestSchema)` to create a new message.
  */
-export const WatchJobRequestSchema: GenMessage<WatchJobRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 9);
+export const WatchJobRequestSchema: GenMessage<WatchJobRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 9)
 
 /**
  * @generated from message worker.v1.WatchJobResponse
  */
-export type WatchJobResponse = Message<"worker.v1.WatchJobResponse"> & {
+export type WatchJobResponse = Message<'worker.v1.WatchJobResponse'> & {
   /**
    * @generated from oneof worker.v1.WatchJobResponse.event
    */
-  event: {
-    /**
-     * job.output: incremental stdout chunk
-     *
-     * @generated from field: string output = 1;
-     */
-    value: string;
-    case: "output";
-  } | {
-    /**
-     * job.completed: terminal event, always sent last
-     *
-     * @generated from field: worker.v1.WatchJobResponse.Done done = 2;
-     */
-    value: WatchJobResponse_Done;
-    case: "done";
-  } | { case: undefined; value?: undefined };
-};
+  event:
+    | {
+        /**
+         * job.output: incremental stdout chunk
+         *
+         * @generated from field: string output = 1;
+         */
+        value: string
+        case: 'output'
+      }
+    | {
+        /**
+         * job.completed: terminal event, always sent last
+         *
+         * @generated from field: worker.v1.WatchJobResponse.Done done = 2;
+         */
+        value: WatchJobResponse_Done
+        case: 'done'
+      }
+    | { case: undefined; value?: undefined }
+}
 
 /**
  * Describes the message worker.v1.WatchJobResponse.
  * Use `create(WatchJobResponseSchema)` to create a new message.
  */
-export const WatchJobResponseSchema: GenMessage<WatchJobResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 10);
+export const WatchJobResponseSchema: GenMessage<WatchJobResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 10)
 
 /**
  * @generated from message worker.v1.WatchJobResponse.Done
  */
-export type WatchJobResponse_Done = Message<"worker.v1.WatchJobResponse.Done"> & {
+export type WatchJobResponse_Done = Message<'worker.v1.WatchJobResponse.Done'> & {
   /**
    * @generated from field: int32 exit_code = 1;
    */
-  exitCode: number;
+  exitCode: number
 
   /**
    * tail
    *
    * @generated from field: string stdout = 2;
    */
-  stdout: string;
+  stdout: string
 
   /**
    * tail
    *
    * @generated from field: string stderr = 3;
    */
-  stderr: string;
-};
+  stderr: string
+}
 
 /**
  * Describes the message worker.v1.WatchJobResponse.Done.
  * Use `create(WatchJobResponse_DoneSchema)` to create a new message.
  */
-export const WatchJobResponse_DoneSchema: GenMessage<WatchJobResponse_Done> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 10, 0);
+export const WatchJobResponse_DoneSchema: GenMessage<WatchJobResponse_Done> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 10, 0)
 
 /**
  * @generated from message worker.v1.JobOutputRequest
  */
-export type JobOutputRequest = Message<"worker.v1.JobOutputRequest"> & {
+export type JobOutputRequest = Message<'worker.v1.JobOutputRequest'> & {
   /**
    * @generated from field: string job_id = 1;
    */
-  jobId: string;
+  jobId: string
 
   /**
    * line index, negative counts from the end (-200 = last 200)
    *
    * @generated from field: int32 start = 2;
    */
-  start: number;
+  start: number
 
   /**
    * exclusive; 0 = through the end of buffer
    *
    * @generated from field: int32 end = 3;
    */
-  end: number;
+  end: number
 
   /**
    * all | stdout | stderr (default all)
    *
    * @generated from field: string stream = 4;
    */
-  stream: string;
-};
+  stream: string
+}
 
 /**
  * Describes the message worker.v1.JobOutputRequest.
  * Use `create(JobOutputRequestSchema)` to create a new message.
  */
-export const JobOutputRequestSchema: GenMessage<JobOutputRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 11);
+export const JobOutputRequestSchema: GenMessage<JobOutputRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 11)
 
 /**
  * @generated from message worker.v1.JobOutputResponse
  */
-export type JobOutputResponse = Message<"worker.v1.JobOutputResponse"> & {
+export type JobOutputResponse = Message<'worker.v1.JobOutputResponse'> & {
   /**
    * @generated from field: repeated string lines = 1;
    */
-  lines: string[];
+  lines: string[]
 
   /**
    * @generated from field: int32 total_lines = 2;
    */
-  totalLines: number;
+  totalLines: number
 
   /**
    * @generated from field: int32 start_line = 3;
    */
-  startLine: number;
+  startLine: number
 
   /**
    * @generated from field: int32 end_line = 4;
    */
-  endLine: number;
+  endLine: number
 
   /**
    * @generated from field: bool done = 5;
    */
-  done: boolean;
-};
+  done: boolean
+}
 
 /**
  * Describes the message worker.v1.JobOutputResponse.
  * Use `create(JobOutputResponseSchema)` to create a new message.
  */
-export const JobOutputResponseSchema: GenMessage<JobOutputResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 12);
+export const JobOutputResponseSchema: GenMessage<JobOutputResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 12)
 
 /**
  * Wait blocks until the job completes or timeout_ms elapses. The worker caps
@@ -644,135 +663,141 @@ export const JobOutputResponseSchema: GenMessage<JobOutputResponse> = /*@__PURE_
  *
  * @generated from message worker.v1.JobWaitRequest
  */
-export type JobWaitRequest = Message<"worker.v1.JobWaitRequest"> & {
+export type JobWaitRequest = Message<'worker.v1.JobWaitRequest'> & {
   /**
    * @generated from field: string job_id = 1;
    */
-  jobId: string;
+  jobId: string
 
   /**
    * @generated from field: int32 timeout_ms = 2;
    */
-  timeoutMs: number;
-};
+  timeoutMs: number
+}
 
 /**
  * Describes the message worker.v1.JobWaitRequest.
  * Use `create(JobWaitRequestSchema)` to create a new message.
  */
-export const JobWaitRequestSchema: GenMessage<JobWaitRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 13);
+export const JobWaitRequestSchema: GenMessage<JobWaitRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 13)
 
 /**
  * @generated from message worker.v1.JobWaitResponse
  */
-export type JobWaitResponse = Message<"worker.v1.JobWaitResponse"> & {
+export type JobWaitResponse = Message<'worker.v1.JobWaitResponse'> & {
   /**
    * @generated from field: string state = 1;
    */
-  state: string;
+  state: string
 
   /**
    * @generated from field: int32 exit_code = 2;
    */
-  exitCode: number;
-};
+  exitCode: number
+}
 
 /**
  * Describes the message worker.v1.JobWaitResponse.
  * Use `create(JobWaitResponseSchema)` to create a new message.
  */
-export const JobWaitResponseSchema: GenMessage<JobWaitResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 14);
+export const JobWaitResponseSchema: GenMessage<JobWaitResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 14)
 
 /**
  * @generated from message worker.v1.JobStdinRequest
  */
-export type JobStdinRequest = Message<"worker.v1.JobStdinRequest"> & {
+export type JobStdinRequest = Message<'worker.v1.JobStdinRequest'> & {
   /**
    * @generated from field: string job_id = 1;
    */
-  jobId: string;
+  jobId: string
 
   /**
    * @generated from field: bytes data = 2;
    */
-  data: Uint8Array;
+  data: Uint8Array
 
   /**
    * close the stdin pipe after writing
    *
    * @generated from field: bool close = 3;
    */
-  close: boolean;
-};
+  close: boolean
+}
 
 /**
  * Describes the message worker.v1.JobStdinRequest.
  * Use `create(JobStdinRequestSchema)` to create a new message.
  */
-export const JobStdinRequestSchema: GenMessage<JobStdinRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 15);
+export const JobStdinRequestSchema: GenMessage<JobStdinRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 15)
 
 /**
  * @generated from message worker.v1.JobStdinResponse
  */
-export type JobStdinResponse = Message<"worker.v1.JobStdinResponse"> & {
+export type JobStdinResponse = Message<'worker.v1.JobStdinResponse'> & {
   /**
    * @generated from field: bool ok = 1;
    */
-  ok: boolean;
-};
+  ok: boolean
+}
 
 /**
  * Describes the message worker.v1.JobStdinResponse.
  * Use `create(JobStdinResponseSchema)` to create a new message.
  */
-export const JobStdinResponseSchema: GenMessage<JobStdinResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 16);
+export const JobStdinResponseSchema: GenMessage<JobStdinResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 16)
 
 /**
  * @generated from message worker.v1.JobKillRequest
  */
-export type JobKillRequest = Message<"worker.v1.JobKillRequest"> & {
+export type JobKillRequest = Message<'worker.v1.JobKillRequest'> & {
   /**
    * @generated from field: string job_id = 1;
    */
-  jobId: string;
-};
+  jobId: string
+}
 
 /**
  * Describes the message worker.v1.JobKillRequest.
  * Use `create(JobKillRequestSchema)` to create a new message.
  */
-export const JobKillRequestSchema: GenMessage<JobKillRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 17);
+export const JobKillRequestSchema: GenMessage<JobKillRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 17)
 
 /**
  * @generated from message worker.v1.JobKillResponse
  */
-export type JobKillResponse = Message<"worker.v1.JobKillResponse"> & {
+export type JobKillResponse = Message<'worker.v1.JobKillResponse'> & {
   /**
    * @generated from field: bool ok = 1;
    */
-  ok: boolean;
-};
+  ok: boolean
+}
 
 /**
  * Describes the message worker.v1.JobKillResponse.
  * Use `create(JobKillResponseSchema)` to create a new message.
  */
-export const JobKillResponseSchema: GenMessage<JobKillResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 18);
+export const JobKillResponseSchema: GenMessage<JobKillResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 18)
 
 /**
  * @generated from message worker.v1.FileReadRequest
  */
-export type FileReadRequest = Message<"worker.v1.FileReadRequest"> & {
+export type FileReadRequest = Message<'worker.v1.FileReadRequest'> & {
   /**
    * @generated from field: string path = 1;
    */
-  path: string;
+  path: string
 
   /**
    * Optional 0-based line window (both inclusive of the line numbering used
@@ -783,7 +808,7 @@ export type FileReadRequest = Message<"worker.v1.FileReadRequest"> & {
    *
    * @generated from field: int32 start_line = 2;
    */
-  startLine: number;
+  startLine: number
 
   /**
    * from the end (-200 = start 200 lines before EOF)
@@ -792,240 +817,251 @@ export type FileReadRequest = Message<"worker.v1.FileReadRequest"> & {
    *
    * @generated from field: int32 end_line = 3;
    */
-  endLine: number;
-};
+  endLine: number
+}
 
 /**
  * Describes the message worker.v1.FileReadRequest.
  * Use `create(FileReadRequestSchema)` to create a new message.
  */
-export const FileReadRequestSchema: GenMessage<FileReadRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 19);
+export const FileReadRequestSchema: GenMessage<FileReadRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 19)
 
 /**
  * @generated from message worker.v1.FileReadResponse
  */
-export type FileReadResponse = Message<"worker.v1.FileReadResponse"> & {
+export type FileReadResponse = Message<'worker.v1.FileReadResponse'> & {
   /**
    * @generated from field: bytes content = 1;
    */
-  content: Uint8Array;
+  content: Uint8Array
 
   /**
    * lines in the whole file
    *
    * @generated from field: int32 total_lines = 2;
    */
-  totalLines: number;
+  totalLines: number
 
   /**
    * first line actually returned (0-based)
    *
    * @generated from field: int32 start_line = 3;
    */
-  startLine: number;
+  startLine: number
 
   /**
    * exclusive end actually returned
    *
    * @generated from field: int32 end_line = 4;
    */
-  endLine: number;
-};
+  endLine: number
+}
 
 /**
  * Describes the message worker.v1.FileReadResponse.
  * Use `create(FileReadResponseSchema)` to create a new message.
  */
-export const FileReadResponseSchema: GenMessage<FileReadResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 20);
+export const FileReadResponseSchema: GenMessage<FileReadResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 20)
 
 /**
  * @generated from message worker.v1.FileWriteRequest
  */
-export type FileWriteRequest = Message<"worker.v1.FileWriteRequest"> & {
+export type FileWriteRequest = Message<'worker.v1.FileWriteRequest'> & {
   /**
    * @generated from field: string path = 1;
    */
-  path: string;
+  path: string
 
   /**
    * @generated from field: bytes content = 2;
    */
-  content: Uint8Array;
-};
+  content: Uint8Array
+}
 
 /**
  * Describes the message worker.v1.FileWriteRequest.
  * Use `create(FileWriteRequestSchema)` to create a new message.
  */
-export const FileWriteRequestSchema: GenMessage<FileWriteRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 21);
+export const FileWriteRequestSchema: GenMessage<FileWriteRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 21)
 
 /**
  * @generated from message worker.v1.FileWriteResponse
  */
-export type FileWriteResponse = Message<"worker.v1.FileWriteResponse"> & {
+export type FileWriteResponse = Message<'worker.v1.FileWriteResponse'> & {
   /**
    * @generated from field: bool ok = 1;
    */
-  ok: boolean;
-};
+  ok: boolean
+}
 
 /**
  * Describes the message worker.v1.FileWriteResponse.
  * Use `create(FileWriteResponseSchema)` to create a new message.
  */
-export const FileWriteResponseSchema: GenMessage<FileWriteResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 22);
+export const FileWriteResponseSchema: GenMessage<FileWriteResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 22)
 
 /**
  * @generated from message worker.v1.FileDeleteRequest
  */
-export type FileDeleteRequest = Message<"worker.v1.FileDeleteRequest"> & {
+export type FileDeleteRequest = Message<'worker.v1.FileDeleteRequest'> & {
   /**
    * @generated from field: string path = 1;
    */
-  path: string;
-};
+  path: string
+}
 
 /**
  * Describes the message worker.v1.FileDeleteRequest.
  * Use `create(FileDeleteRequestSchema)` to create a new message.
  */
-export const FileDeleteRequestSchema: GenMessage<FileDeleteRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 23);
+export const FileDeleteRequestSchema: GenMessage<FileDeleteRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 23)
 
 /**
  * @generated from message worker.v1.FileDeleteResponse
  */
-export type FileDeleteResponse = Message<"worker.v1.FileDeleteResponse"> & {
+export type FileDeleteResponse = Message<'worker.v1.FileDeleteResponse'> & {
   /**
    * @generated from field: bool ok = 1;
    */
-  ok: boolean;
-};
+  ok: boolean
+}
 
 /**
  * Describes the message worker.v1.FileDeleteResponse.
  * Use `create(FileDeleteResponseSchema)` to create a new message.
  */
-export const FileDeleteResponseSchema: GenMessage<FileDeleteResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 24);
+export const FileDeleteResponseSchema: GenMessage<FileDeleteResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 24)
 
 /**
  * @generated from message worker.v1.FileMoveRequest
  */
-export type FileMoveRequest = Message<"worker.v1.FileMoveRequest"> & {
+export type FileMoveRequest = Message<'worker.v1.FileMoveRequest'> & {
   /**
    * @generated from field: string from = 1;
    */
-  from: string;
+  from: string
 
   /**
    * @generated from field: string to = 2;
    */
-  to: string;
-};
+  to: string
+}
 
 /**
  * Describes the message worker.v1.FileMoveRequest.
  * Use `create(FileMoveRequestSchema)` to create a new message.
  */
-export const FileMoveRequestSchema: GenMessage<FileMoveRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 25);
+export const FileMoveRequestSchema: GenMessage<FileMoveRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 25)
 
 /**
  * @generated from message worker.v1.FileMoveResponse
  */
-export type FileMoveResponse = Message<"worker.v1.FileMoveResponse"> & {
+export type FileMoveResponse = Message<'worker.v1.FileMoveResponse'> & {
   /**
    * @generated from field: bool ok = 1;
    */
-  ok: boolean;
-};
+  ok: boolean
+}
 
 /**
  * Describes the message worker.v1.FileMoveResponse.
  * Use `create(FileMoveResponseSchema)` to create a new message.
  */
-export const FileMoveResponseSchema: GenMessage<FileMoveResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 26);
+export const FileMoveResponseSchema: GenMessage<FileMoveResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 26)
 
 /**
  * @generated from message worker.v1.FileCopyRequest
  */
-export type FileCopyRequest = Message<"worker.v1.FileCopyRequest"> & {
+export type FileCopyRequest = Message<'worker.v1.FileCopyRequest'> & {
   /**
    * @generated from field: string from = 1;
    */
-  from: string;
+  from: string
 
   /**
    * @generated from field: string to = 2;
    */
-  to: string;
-};
+  to: string
+}
 
 /**
  * Describes the message worker.v1.FileCopyRequest.
  * Use `create(FileCopyRequestSchema)` to create a new message.
  */
-export const FileCopyRequestSchema: GenMessage<FileCopyRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 27);
+export const FileCopyRequestSchema: GenMessage<FileCopyRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 27)
 
 /**
  * @generated from message worker.v1.FileCopyResponse
  */
-export type FileCopyResponse = Message<"worker.v1.FileCopyResponse"> & {
+export type FileCopyResponse = Message<'worker.v1.FileCopyResponse'> & {
   /**
    * @generated from field: bool ok = 1;
    */
-  ok: boolean;
-};
+  ok: boolean
+}
 
 /**
  * Describes the message worker.v1.FileCopyResponse.
  * Use `create(FileCopyResponseSchema)` to create a new message.
  */
-export const FileCopyResponseSchema: GenMessage<FileCopyResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 28);
+export const FileCopyResponseSchema: GenMessage<FileCopyResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 28)
 
 /**
  * @generated from message worker.v1.FileEntry
  */
-export type FileEntry = Message<"worker.v1.FileEntry"> & {
+export type FileEntry = Message<'worker.v1.FileEntry'> & {
   /**
    * @generated from field: string path = 1;
    */
-  path: string;
+  path: string
 
   /**
    * @generated from field: int64 size = 2;
    */
-  size: bigint;
+  size: bigint
 
   /**
    * @generated from field: bool is_dir = 3;
    */
-  isDir: boolean;
-};
+  isDir: boolean
+}
 
 /**
  * Describes the message worker.v1.FileEntry.
  * Use `create(FileEntrySchema)` to create a new message.
  */
-export const FileEntrySchema: GenMessage<FileEntry> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 29);
+export const FileEntrySchema: GenMessage<FileEntry> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 29)
 
 /**
  * @generated from message worker.v1.FileListRequest
  */
-export type FileListRequest = Message<"worker.v1.FileListRequest"> & {
+export type FileListRequest = Message<'worker.v1.FileListRequest'> & {
   /**
    * @generated from field: string path = 1;
    */
-  path: string;
+  path: string
 
   /**
    * Optional server-side recursion: expand directories up to `depth` levels
@@ -1034,36 +1070,37 @@ export type FileListRequest = Message<"worker.v1.FileListRequest"> & {
    *
    * @generated from field: int32 depth = 2;
    */
-  depth: number;
+  depth: number
 
   /**
    * max entries returned (<=0 = 1000, hard cap 10000)
    *
    * @generated from field: int32 limit = 3;
    */
-  limit: number;
-};
+  limit: number
+}
 
 /**
  * Describes the message worker.v1.FileListRequest.
  * Use `create(FileListRequestSchema)` to create a new message.
  */
-export const FileListRequestSchema: GenMessage<FileListRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 30);
+export const FileListRequestSchema: GenMessage<FileListRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 30)
 
 /**
  * @generated from message worker.v1.FileListResponse
  */
-export type FileListResponse = Message<"worker.v1.FileListResponse"> & {
+export type FileListResponse = Message<'worker.v1.FileListResponse'> & {
   /**
    * @generated from field: bool is_dir = 1;
    */
-  isDir: boolean;
+  isDir: boolean
 
   /**
    * @generated from field: repeated worker.v1.FileEntry files = 2;
    */
-  files: FileEntry[];
+  files: FileEntry[]
 
   /**
    * True when the listing hit the entry cap and was TRUNCATED: `files` is a
@@ -1073,15 +1110,16 @@ export type FileListResponse = Message<"worker.v1.FileListResponse"> & {
    *
    * @generated from field: bool truncated = 3;
    */
-  truncated: boolean;
-};
+  truncated: boolean
+}
 
 /**
  * Describes the message worker.v1.FileListResponse.
  * Use `create(FileListResponseSchema)` to create a new message.
  */
-export const FileListResponseSchema: GenMessage<FileListResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 31);
+export const FileListResponseSchema: GenMessage<FileListResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 31)
 
 /**
  * SyncFolder unpacks a tarball of a directory tree into the worker's
@@ -1091,209 +1129,216 @@ export const FileListResponseSchema: GenMessage<FileListResponse> = /*@__PURE__*
  *
  * @generated from message worker.v1.SyncFolderRequest
  */
-export type SyncFolderRequest = Message<"worker.v1.SyncFolderRequest"> & {
+export type SyncFolderRequest = Message<'worker.v1.SyncFolderRequest'> & {
   /**
    * @generated from field: bytes tarball = 1;
    */
-  tarball: Uint8Array;
+  tarball: Uint8Array
 
   /**
    * workspace-relative subdir; default "." (root)
    *
    * @generated from field: string dest = 2;
    */
-  dest: string;
+  dest: string
 
   /**
    * true = empty dest before unpacking
    *
    * @generated from field: bool clean = 3;
    */
-  clean: boolean;
+  clean: boolean
 
   /**
    * optional revision id being synced
    *
    * @generated from field: string rev = 4;
    */
-  rev: string;
-};
+  rev: string
+}
 
 /**
  * Describes the message worker.v1.SyncFolderRequest.
  * Use `create(SyncFolderRequestSchema)` to create a new message.
  */
-export const SyncFolderRequestSchema: GenMessage<SyncFolderRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 32);
+export const SyncFolderRequestSchema: GenMessage<SyncFolderRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 32)
 
 /**
  * @generated from message worker.v1.SyncFolderResponse
  */
-export type SyncFolderResponse = Message<"worker.v1.SyncFolderResponse"> & {
+export type SyncFolderResponse = Message<'worker.v1.SyncFolderResponse'> & {
   /**
    * @generated from field: int32 files = 1;
    */
-  files: number;
+  files: number
 
   /**
    * the workspace root used
    *
    * @generated from field: string root = 2;
    */
-  root: string;
-};
+  root: string
+}
 
 /**
  * Describes the message worker.v1.SyncFolderResponse.
  * Use `create(SyncFolderResponseSchema)` to create a new message.
  */
-export const SyncFolderResponseSchema: GenMessage<SyncFolderResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 33);
+export const SyncFolderResponseSchema: GenMessage<SyncFolderResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 33)
 
 /**
  * @generated from message worker.v1.EnrollStatusRequest
  */
-export type EnrollStatusRequest = Message<"worker.v1.EnrollStatusRequest"> & {
-};
+export type EnrollStatusRequest = Message<'worker.v1.EnrollStatusRequest'> & {}
 
 /**
  * Describes the message worker.v1.EnrollStatusRequest.
  * Use `create(EnrollStatusRequestSchema)` to create a new message.
  */
-export const EnrollStatusRequestSchema: GenMessage<EnrollStatusRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 34);
+export const EnrollStatusRequestSchema: GenMessage<EnrollStatusRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 34)
 
 /**
  * @generated from message worker.v1.EnrollStatusResponse
  */
-export type EnrollStatusResponse = Message<"worker.v1.EnrollStatusResponse"> & {
+export type EnrollStatusResponse = Message<'worker.v1.EnrollStatusResponse'> & {
   /**
    * a token is installed (preauthorized or claimed)
    *
    * @generated from field: bool claimed = 1;
    */
-  claimed: boolean;
+  claimed: boolean
 
   /**
    * true while Unclaimed (no WORKER_TOKEN, not yet claimed)
    *
    * @generated from field: bool needs_code = 2;
    */
-  needsCode: boolean;
+  needsCode: boolean
 
   /**
    * true when WORKER_TOKEN was supplied at boot
    *
    * @generated from field: bool preauthorized = 3;
    */
-  preauthorized: boolean;
+  preauthorized: boolean
 
   /**
    * @generated from field: string boot_id = 4;
    */
-  bootId: string;
-};
+  bootId: string
+}
 
 /**
  * Describes the message worker.v1.EnrollStatusResponse.
  * Use `create(EnrollStatusResponseSchema)` to create a new message.
  */
-export const EnrollStatusResponseSchema: GenMessage<EnrollStatusResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 35);
+export const EnrollStatusResponseSchema: GenMessage<EnrollStatusResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 35)
 
 /**
  * @generated from message worker.v1.EnrollClaimRequest
  */
-export type EnrollClaimRequest = Message<"worker.v1.EnrollClaimRequest"> & {
+export type EnrollClaimRequest = Message<'worker.v1.EnrollClaimRequest'> & {
   /**
    * one-time code printed by the worker at startup
    *
    * @generated from field: string code = 1;
    */
-  code: string;
+  code: string
 
   /**
    * optional caller identity, recorded for audit
    *
    * @generated from field: string owner_id = 2;
    */
-  ownerId: string;
-};
+  ownerId: string
+}
 
 /**
  * Describes the message worker.v1.EnrollClaimRequest.
  * Use `create(EnrollClaimRequestSchema)` to create a new message.
  */
-export const EnrollClaimRequestSchema: GenMessage<EnrollClaimRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 36);
+export const EnrollClaimRequestSchema: GenMessage<EnrollClaimRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 36)
 
 /**
  * @generated from message worker.v1.EnrollClaimResponse
  */
-export type EnrollClaimResponse = Message<"worker.v1.EnrollClaimResponse"> & {
+export type EnrollClaimResponse = Message<'worker.v1.EnrollClaimResponse'> & {
   /**
    * @generated from field: bool ok = 1;
    */
-  ok: boolean;
+  ok: boolean
 
   /**
    * worker-issued bearer token for WorkerService
    *
    * @generated from field: string token = 2;
    */
-  token: string;
-};
+  token: string
+}
 
 /**
  * Describes the message worker.v1.EnrollClaimResponse.
  * Use `create(EnrollClaimResponseSchema)` to create a new message.
  */
-export const EnrollClaimResponseSchema: GenMessage<EnrollClaimResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 37);
+export const EnrollClaimResponseSchema: GenMessage<EnrollClaimResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 37)
 
 /**
  * @generated from message worker.v1.EnrollUnreleaseRequest
  */
-export type EnrollUnreleaseRequest = Message<"worker.v1.EnrollUnreleaseRequest"> & {
+export type EnrollUnreleaseRequest = Message<'worker.v1.EnrollUnreleaseRequest'> & {
   /**
    * owner_id identifies the releasing caller (audit). The caller must also
    * present the current bearer token (the worker verifies it).
    *
    * @generated from field: string owner_id = 1;
    */
-  ownerId: string;
-};
+  ownerId: string
+}
 
 /**
  * Describes the message worker.v1.EnrollUnreleaseRequest.
  * Use `create(EnrollUnreleaseRequestSchema)` to create a new message.
  */
-export const EnrollUnreleaseRequestSchema: GenMessage<EnrollUnreleaseRequest> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 38);
+export const EnrollUnreleaseRequestSchema: GenMessage<EnrollUnreleaseRequest> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 38)
 
 /**
  * @generated from message worker.v1.EnrollUnreleaseResponse
  */
-export type EnrollUnreleaseResponse = Message<"worker.v1.EnrollUnreleaseResponse"> & {
+export type EnrollUnreleaseResponse = Message<'worker.v1.EnrollUnreleaseResponse'> & {
   /**
    * @generated from field: bool ok = 1;
    */
-  ok: boolean;
+  ok: boolean
 
   /**
    * fresh one-time code (empty for pre-authorized workers)
    *
    * @generated from field: string code = 2;
    */
-  code: string;
-};
+  code: string
+}
 
 /**
  * Describes the message worker.v1.EnrollUnreleaseResponse.
  * Use `create(EnrollUnreleaseResponseSchema)` to create a new message.
  */
-export const EnrollUnreleaseResponseSchema: GenMessage<EnrollUnreleaseResponse> = /*@__PURE__*/
-  messageDesc(file_worker_v1_worker, 39);
+export const EnrollUnreleaseResponseSchema: GenMessage<EnrollUnreleaseResponse> =
+  /*@__PURE__*/
+  messageDesc(file_worker_v1_worker, 39)
 
 /**
  * @generated from service worker.v1.WorkerService
@@ -1303,124 +1348,123 @@ export const WorkerService: GenService<{
    * @generated from rpc worker.v1.WorkerService.Info
    */
   info: {
-    methodKind: "unary";
-    input: typeof InfoRequestSchema;
-    output: typeof InfoResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof InfoRequestSchema
+    output: typeof InfoResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.Execute
    */
   execute: {
-    methodKind: "unary";
-    input: typeof ExecuteRequestSchema;
-    output: typeof ExecuteResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof ExecuteRequestSchema
+    output: typeof ExecuteResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.ListJobs
    */
   listJobs: {
-    methodKind: "unary";
-    input: typeof ListJobsRequestSchema;
-    output: typeof ListJobsResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof ListJobsRequestSchema
+    output: typeof ListJobsResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.WatchJob
    */
   watchJob: {
-    methodKind: "server_streaming";
-    input: typeof WatchJobRequestSchema;
-    output: typeof WatchJobResponseSchema;
-  },
+    methodKind: 'server_streaming'
+    input: typeof WatchJobRequestSchema
+    output: typeof WatchJobResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.JobOutput
    */
   jobOutput: {
-    methodKind: "unary";
-    input: typeof JobOutputRequestSchema;
-    output: typeof JobOutputResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof JobOutputRequestSchema
+    output: typeof JobOutputResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.JobWait
    */
   jobWait: {
-    methodKind: "unary";
-    input: typeof JobWaitRequestSchema;
-    output: typeof JobWaitResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof JobWaitRequestSchema
+    output: typeof JobWaitResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.JobStdin
    */
   jobStdin: {
-    methodKind: "unary";
-    input: typeof JobStdinRequestSchema;
-    output: typeof JobStdinResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof JobStdinRequestSchema
+    output: typeof JobStdinResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.JobKill
    */
   jobKill: {
-    methodKind: "unary";
-    input: typeof JobKillRequestSchema;
-    output: typeof JobKillResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof JobKillRequestSchema
+    output: typeof JobKillResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.FileRead
    */
   fileRead: {
-    methodKind: "unary";
-    input: typeof FileReadRequestSchema;
-    output: typeof FileReadResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof FileReadRequestSchema
+    output: typeof FileReadResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.FileWrite
    */
   fileWrite: {
-    methodKind: "unary";
-    input: typeof FileWriteRequestSchema;
-    output: typeof FileWriteResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof FileWriteRequestSchema
+    output: typeof FileWriteResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.FileDelete
    */
   fileDelete: {
-    methodKind: "unary";
-    input: typeof FileDeleteRequestSchema;
-    output: typeof FileDeleteResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof FileDeleteRequestSchema
+    output: typeof FileDeleteResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.FileMove
    */
   fileMove: {
-    methodKind: "unary";
-    input: typeof FileMoveRequestSchema;
-    output: typeof FileMoveResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof FileMoveRequestSchema
+    output: typeof FileMoveResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.FileCopy
    */
   fileCopy: {
-    methodKind: "unary";
-    input: typeof FileCopyRequestSchema;
-    output: typeof FileCopyResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof FileCopyRequestSchema
+    output: typeof FileCopyResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.FileList
    */
   fileList: {
-    methodKind: "unary";
-    input: typeof FileListRequestSchema;
-    output: typeof FileListResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof FileListRequestSchema
+    output: typeof FileListResponseSchema
+  }
   /**
    * @generated from rpc worker.v1.WorkerService.SyncFolder
    */
   syncFolder: {
-    methodKind: "unary";
-    input: typeof SyncFolderRequestSchema;
-    output: typeof SyncFolderResponseSchema;
-  },
-}> = /*@__PURE__*/
-  serviceDesc(file_worker_v1_worker, 0);
+    methodKind: 'unary'
+    input: typeof SyncFolderRequestSchema
+    output: typeof SyncFolderResponseSchema
+  }
+}> = /*@__PURE__*/ serviceDesc(file_worker_v1_worker, 0)
 
 /**
  * ---- exclusive enrollment ----
@@ -1450,10 +1494,10 @@ export const WorkerEnroll: GenService<{
    * @generated from rpc worker.v1.WorkerEnroll.Status
    */
   status: {
-    methodKind: "unary";
-    input: typeof EnrollStatusRequestSchema;
-    output: typeof EnrollStatusResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof EnrollStatusRequestSchema
+    output: typeof EnrollStatusResponseSchema
+  }
   /**
    * Claim consumes the one-time code and installs the worker-issued bearer
    * token. One winner per worker lifetime; subsequent calls → AlreadyExists.
@@ -1461,10 +1505,10 @@ export const WorkerEnroll: GenService<{
    * @generated from rpc worker.v1.WorkerEnroll.Claim
    */
   claim: {
-    methodKind: "unary";
-    input: typeof EnrollClaimRequestSchema;
-    output: typeof EnrollClaimResponseSchema;
-  },
+    methodKind: 'unary'
+    input: typeof EnrollClaimRequestSchema
+    output: typeof EnrollClaimResponseSchema
+  }
   /**
    * Unrelease revokes the current token and returns the worker to Unclaimed
    * with a FRESH one-time code. The released worker can then be claimed again
@@ -1475,10 +1519,8 @@ export const WorkerEnroll: GenService<{
    * @generated from rpc worker.v1.WorkerEnroll.Unrelease
    */
   unrelease: {
-    methodKind: "unary";
-    input: typeof EnrollUnreleaseRequestSchema;
-    output: typeof EnrollUnreleaseResponseSchema;
-  },
-}> = /*@__PURE__*/
-  serviceDesc(file_worker_v1_worker, 1);
-
+    methodKind: 'unary'
+    input: typeof EnrollUnreleaseRequestSchema
+    output: typeof EnrollUnreleaseResponseSchema
+  }
+}> = /*@__PURE__*/ serviceDesc(file_worker_v1_worker, 1)

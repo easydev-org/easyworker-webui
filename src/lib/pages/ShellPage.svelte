@@ -96,14 +96,15 @@
       await watchJob(
         session.token,
         r.jobId,
-        (ev) => {
+        ev => {
           if (ev.output !== undefined) push('out', stripAnsi(ev.output))
           if (ev.done) push('exit', `[done exit=${ev.done.exitCode}]`)
         },
         ac.signal,
       )
     } catch (e) {
-      if ((e as Error)?.name !== 'AbortError') push('err', `error: ${String((e as Error)?.message ?? e)}`)
+      if ((e as Error)?.name !== 'AbortError')
+        push('err', `error: ${String((e as Error)?.message ?? e)}`)
     } finally {
       // Only the CURRENT run may clear the lock/controller (a detached run's
       // abort fires synchronously; guard against clobbering a newer run).
@@ -192,12 +193,14 @@
   </div>
   <form
     class="flex shrink-0 items-center gap-2 border-t border-border bg-card px-3 py-2"
-    onsubmit={(e) => {
+    onsubmit={e => {
       e.preventDefault()
       submit()
     }}
   >
-    <span class="shrink-0 truncate font-mono text-meta text-muted-foreground">{displayPath(session.cwd || session.workspace || '/')}</span>
+    <span class="shrink-0 truncate font-mono text-meta text-muted-foreground"
+      >{displayPath(session.cwd || session.workspace || '/')}</span
+    >
     <!-- THE LANGUAGE PICKER. It sits at the prompt because it changes what the text beside it MEANS:
          `ls` is a command in bash and an alias in PowerShell 7, and `echo hi && ls` does not parse in
          Windows PowerShell at all. Hidden when the worker offers one language or none — a picker with

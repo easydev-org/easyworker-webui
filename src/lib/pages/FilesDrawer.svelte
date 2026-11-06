@@ -216,7 +216,7 @@
 <div
   class="relative flex min-h-0 min-w-0 flex-1 flex-col"
   role="presentation"
-  ondragover={(e) => {
+  ondragover={e => {
     e.preventDefault()
     dragging = true
   }}
@@ -225,21 +225,51 @@
 >
   {#if editing === null}
     <div class="flex shrink-0 items-center gap-0.5 border-b border-border px-1.5 py-1">
-      <Button variant="ghost" size="icon" title="Back (up one level)" aria-label="Back" onclick={() => load(normAbs(dir + '/..'))}>
+      <Button
+        variant="ghost"
+        size="icon"
+        title="Back (up one level)"
+        aria-label="Back"
+        onclick={() => load(normAbs(dir + '/..'))}
+      >
         <AppIcons.back class="size-4" />
       </Button>
-      <Button variant="ghost" size="icon" title="Workspace (~)" aria-label="Workspace" onclick={() => load(session.workspace || '/')}>
+      <Button
+        variant="ghost"
+        size="icon"
+        title="Workspace (~)"
+        aria-label="Workspace"
+        onclick={() => load(session.workspace || '/')}
+      >
         <AppIcons.home class="size-4" />
       </Button>
-      <Button variant="ghost" size="icon" title="Locate the shell's directory" aria-label="Locate" onclick={() => load(defaultDir())}>
+      <Button
+        variant="ghost"
+        size="icon"
+        title="Locate the shell's directory"
+        aria-label="Locate"
+        onclick={() => load(defaultDir())}
+      >
         <AppIcons.locate class="size-4" />
       </Button>
-      <Button variant="ghost" size="icon" title="Upload file(s) here" aria-label="Upload" onclick={newFile}>
+      <Button
+        variant="ghost"
+        size="icon"
+        title="Upload file(s) here"
+        aria-label="Upload"
+        onclick={newFile}
+      >
         <AppIcons.upload class="size-4" />
       </Button>
       <input bind:this={filePicker} type="file" multiple class="hidden" onchange={onPick} />
       <span class="ml-auto"></span>
-      <Button variant="ghost" size="icon" title="Refresh" aria-label="Refresh" onclick={() => load(dir)}>
+      <Button
+        variant="ghost"
+        size="icon"
+        title="Refresh"
+        aria-label="Refresh"
+        onclick={() => load(dir)}
+      >
         <AppIcons.refresh class="size-4" />
       </Button>
       <Button variant="ghost" size="icon" title="Close" aria-label="Close" onclick={onClose}>
@@ -247,10 +277,16 @@
       </Button>
     </div>
 
-    <div class="flex shrink-0 flex-wrap items-center gap-0.5 border-b border-border px-2 py-1 font-mono text-micro text-muted-foreground">
+    <div
+      class="flex shrink-0 flex-wrap items-center gap-0.5 border-b border-border px-2 py-1 font-mono text-micro text-muted-foreground"
+    >
       {#each crumbs as c, i (c.path)}
         {#if i > 0}<AppIcons.chevronRight class="size-3 shrink-0 opacity-50" />{/if}
-        <button type="button" class="rounded px-1 hover:bg-muted hover:text-foreground" onclick={() => load(c.path)}>
+        <button
+          type="button"
+          class="rounded px-1 hover:bg-muted hover:text-foreground"
+          onclick={() => load(c.path)}
+        >
           {c.name}
         </button>
       {/each}
@@ -276,27 +312,53 @@
               <AppIcons.file class="size-4 shrink-0 text-muted-foreground" />
             {/if}
             <span class="min-w-0 flex-1 truncate">{e.name}</span>
-            <span class="shrink-0 text-micro text-muted-foreground">{e.isDir ? '' : fmtSize(e.size)}</span>
-            {#if e.isDir}<AppIcons.chevronRight class="size-3.5 shrink-0 text-muted-foreground" />{/if}
+            <span class="shrink-0 text-micro text-muted-foreground"
+              >{e.isDir ? '' : fmtSize(e.size)}</span
+            >
+            {#if e.isDir}<AppIcons.chevronRight
+                class="size-3.5 shrink-0 text-muted-foreground"
+              />{/if}
           </button>
         {/each}
       {/if}
     </div>
   {:else}
     <div class="flex shrink-0 items-center gap-0.5 border-b border-border px-1.5 py-1">
-      <Button variant="ghost" size="icon" title="Back to files" aria-label="Back" onclick={closeEditor}>
+      <Button
+        variant="ghost"
+        size="icon"
+        title="Back to files"
+        aria-label="Back"
+        onclick={closeEditor}
+      >
         <AppIcons.back class="size-4" />
       </Button>
-      <span class="min-w-0 flex-1 truncate px-1 font-mono text-micro" title={editing}>{displayPath(editing)}</span>
+      <span class="min-w-0 flex-1 truncate px-1 font-mono text-micro" title={editing}
+        >{displayPath(editing)}</span
+      >
       {#if editKind === 'text'}
-        <Button variant="ghost" size="icon" title="Save" aria-label="Save" disabled={saving} onclick={save}>
+        <Button
+          variant="ghost"
+          size="icon"
+          title="Save"
+          aria-label="Save"
+          disabled={saving}
+          onclick={save}
+        >
           <AppIcons.save class="size-4" />
         </Button>
       {/if}
       <Button variant="ghost" size="icon" title="Download" aria-label="Download" onclick={download}>
         <AppIcons.download class="size-4" />
       </Button>
-      <Button variant="ghost" size="icon" class="text-destructive" title="Delete" aria-label="Delete" onclick={del}>
+      <Button
+        variant="ghost"
+        size="icon"
+        class="text-destructive"
+        title="Delete"
+        aria-label="Delete"
+        onclick={del}
+      >
         <AppIcons.delete class="size-4" />
       </Button>
     </div>
@@ -304,8 +366,7 @@
       <textarea
         bind:value={content}
         class="min-h-0 flex-1 resize-none rounded-none border-0 bg-transparent p-3 font-mono text-meta outline-none"
-        spellcheck="false"
-      ></textarea>
+        spellcheck="false"></textarea>
     {:else if mediaTooBig}
       <div class="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 p-4 text-center">
         <AppIcons.file class="size-8 text-muted-foreground" />
@@ -334,11 +395,17 @@
   {/if}
 
   {#if dragging}
-    <div class="pointer-events-none absolute inset-0 flex items-center justify-center bg-primary/10 text-primary">
-      <span class="rounded-md border border-primary bg-background px-3 py-1.5 text-meta">Drop files to upload</span>
+    <div
+      class="pointer-events-none absolute inset-0 flex items-center justify-center bg-primary/10 text-primary"
+    >
+      <span class="rounded-md border border-primary bg-background px-3 py-1.5 text-meta"
+        >Drop files to upload</span
+      >
     </div>
   {/if}
   {#if toast}
-    <div class="absolute inset-x-0 bottom-0 bg-popover px-3 py-1.5 text-micro text-foreground">{toast}</div>
+    <div class="absolute inset-x-0 bottom-0 bg-popover px-3 py-1.5 text-micro text-foreground">
+      {toast}
+    </div>
   {/if}
 </div>

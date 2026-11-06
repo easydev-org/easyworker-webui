@@ -102,15 +102,7 @@ export function fmtSize(n: number): string {
   return `${(n / 1048576).toFixed(1)} MiB`
 }
 
-export {
-  absOf,
-  basename,
-  crumbsOf,
-  displayPath,
-  normAbs,
-  resolveAbs,
-  rootOf,
-} from './paths'
+export { absOf, basename, crumbsOf, displayPath, normAbs, resolveAbs, rootOf } from './paths'
 
 /** Strip ANSI/VT escape sequences (CSI, OSC incl. hyperlinks, DCS, single). */
 export function stripAnsi(s: string): string {

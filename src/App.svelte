@@ -54,18 +54,18 @@
   <div class="flex h-dvh flex-col overflow-hidden bg-background">
     <header class="flex h-12 shrink-0 items-center gap-2 border-b border-border bg-card px-3">
       <span class="flex items-center gap-2 font-semibold">
-        <span class="flex size-5 items-center justify-center rounded-md bg-primary font-mono text-[10px] font-bold text-primary-foreground">AW</span>
+        <span
+          class="flex size-5 items-center justify-center rounded-md bg-primary font-mono text-[10px] font-bold text-primary-foreground"
+          >AW</span
+        >
         Agent Worker
       </span>
-      <span class="hidden font-mono text-micro text-muted-foreground sm:inline">{session.os}/{session.arch}</span>
+      <span class="hidden font-mono text-micro text-muted-foreground sm:inline"
+        >{session.os}/{session.arch}</span
+      >
       <span class="ml-auto"></span>
       {#if hasDesktop}
-        <Button
-          variant="ghost"
-          size="sm"
-          class="gap-1.5"
-          onclick={showDesktop}
-        >
+        <Button variant="ghost" size="sm" class="gap-1.5" onclick={showDesktop}>
           <AppIcons.desktop class="size-4" />Desktop
         </Button>
       {/if}
@@ -93,11 +93,15 @@
     <div class="relative flex min-h-0 flex-1">
       <ShellPage />
       {#if drawer === 'files'}
-        <aside class="flex min-h-0 w-full flex-col border-border bg-card max-sm:absolute max-sm:inset-0 max-sm:z-10 max-sm:border-l-0 sm:w-1/2 sm:border-l">
+        <aside
+          class="flex min-h-0 w-full flex-col border-border bg-card max-sm:absolute max-sm:inset-0 max-sm:z-10 max-sm:border-l-0 sm:w-1/2 sm:border-l"
+        >
           <FilesDrawer onClose={() => (drawer = null)} />
         </aside>
       {:else if drawer === 'jobs'}
-        <aside class="flex min-h-0 w-full flex-col border-border bg-card max-sm:absolute max-sm:inset-0 max-sm:z-10 max-sm:border-l-0 sm:w-1/2 sm:border-l">
+        <aside
+          class="flex min-h-0 w-full flex-col border-border bg-card max-sm:absolute max-sm:inset-0 max-sm:z-10 max-sm:border-l-0 sm:w-1/2 sm:border-l"
+        >
           <JobsDrawer onClose={() => (drawer = null)} />
         </aside>
       {/if}

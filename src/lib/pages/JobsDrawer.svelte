@@ -59,7 +59,12 @@
   async function view(id: string, start = 0) {
     viewId = id
     try {
-      const r = await client().jobOutput({ jobId: id, start, end: start + PAGE, stream: viewStream })
+      const r = await client().jobOutput({
+        jobId: id,
+        start,
+        end: start + PAGE,
+        stream: viewStream,
+      })
       viewLines = start === 0 ? [...r.lines] : [...viewLines, ...r.lines]
       viewTotal = r.totalLines
       viewDone = r.done
@@ -80,13 +85,18 @@
     const ac = new AbortController()
     watchAbort = ac
     try {
-      await watchJob(session.token, id, (ev) => {
-        if (ev.output !== undefined) viewLines = [...viewLines, stripAnsi(ev.output)]
-        if (ev.done) {
-          viewLines = [...viewLines, `[done exit=${ev.done.exitCode}]`]
-          viewDone = true
-        }
-      }, ac.signal)
+      await watchJob(
+        session.token,
+        id,
+        ev => {
+          if (ev.output !== undefined) viewLines = [...viewLines, stripAnsi(ev.output)]
+          if (ev.done) {
+            viewLines = [...viewLines, `[done exit=${ev.done.exitCode}]`]
+            viewDone = true
+          }
+        },
+        ac.signal,
+      )
     } catch (e) {
       if ((e as Error)?.name !== 'AbortError') say(String((e as Error)?.message ?? e))
     } finally {
@@ -110,7 +120,6 @@
     viewId = null
     viewLines = []
   }
-
 
   onMount(() => {
     void load()
@@ -155,26 +164,36 @@
 
   {#if viewId}
     <div class="min-h-0 flex-1 overflow-auto p-2 font-mono text-meta">
-        {#each viewLines as l, i (i)}
-          <div class="term-line">{l}</div>
-        {/each}
-        {#if viewLines.length === 0}
-          <p class="text-muted-foreground">no output</p>
-        {/if}
-      </div>
-    <div class="flex shrink-0 items-center gap-2 border-t border-border px-2 py-1.5 text-micro text-muted-foreground">
+      {#each viewLines as l, i (i)}
+        <div class="term-line">{l}</div>
+      {/each}
+      {#if viewLines.length === 0}
+        <p class="text-muted-foreground">no output</p>
+      {/if}
+    </div>
+    <div
+      class="flex shrink-0 items-center gap-2 border-t border-border px-2 py-1.5 text-micro text-muted-foreground"
+    >
       <span>{viewLines.length} / {viewTotal} lines {viewDone ? '· done' : '· running'}</span>
       <span class="ml-auto"></span>
       {#if !viewDone}
         <Button variant="ghost" size="sm" title="Stream live output" onclick={() => watch(viewId!)}>
           <AppIcons.watch class="size-4" />Watch
         </Button>
-        <Button variant="ghost" size="sm" class="text-destructive" title="Kill the job" onclick={() => kill(viewId!)}>
+        <Button
+          variant="ghost"
+          size="sm"
+          class="text-destructive"
+          title="Kill the job"
+          onclick={() => kill(viewId!)}
+        >
           <AppIcons.kill class="size-4" />Kill
         </Button>
       {/if}
       {#if viewLines.length < viewTotal}
-        <Button variant="ghost" size="sm" onclick={() => view(viewId!, viewLines.length)}>Load more</Button>
+        <Button variant="ghost" size="sm" onclick={() => view(viewId!, viewLines.length)}
+          >Load more</Button
+        >
       {/if}
     </div>
   {:else}
@@ -191,19 +210,32 @@
               <div class="flex items-center gap-2 text-micro">
                 <span class="font-mono">{j.id}</span>
                 <span class="state-{j.state} font-semibold">{j.state}</span>
-                {#if j.state !== 'running'}<span class="text-muted-foreground">exit {j.exitCode}</span>{/if}
+                {#if j.state !== 'running'}<span class="text-muted-foreground"
+                    >exit {j.exitCode}</span
+                  >{/if}
               </div>
               <p class="mt-1 font-mono text-micro break-all whitespace-pre-wrap">{j.command}</p>
               <div class="mt-1.5 flex gap-1">
                 <Button variant="outline" size="sm" title="View output" onclick={() => view(j.id)}>
                   <AppIcons.view class="size-4" />View
                 </Button>
-                <Button variant="outline" size="sm" title="Stream live output" onclick={() => watch(j.id)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  title="Stream live output"
+                  onclick={() => watch(j.id)}
+                >
                   <AppIcons.watch class="size-4" />Watch
                 </Button>
-                {#if j.state === 'running'}<Button variant="outline" size="sm" class="text-destructive" title="Kill the job" onclick={() => kill(j.id)}>
-                  <AppIcons.kill class="size-4" />Kill
-                </Button>{/if}
+                {#if j.state === 'running'}<Button
+                    variant="outline"
+                    size="sm"
+                    class="text-destructive"
+                    title="Kill the job"
+                    onclick={() => kill(j.id)}
+                  >
+                    <AppIcons.kill class="size-4" />Kill
+                  </Button>{/if}
               </div>
             </div>
           {/each}
@@ -225,18 +257,39 @@
                 <td class="px-2 py-1.5 font-mono text-micro">{j.id}</td>
                 <td class="state-{j.state} px-2 py-1.5">{j.state}</td>
                 <td class="px-2 py-1.5">{j.state === 'running' ? '' : j.exitCode}</td>
-                <td class="truncate px-2 py-1.5 font-mono text-micro" title={j.command}>{j.command}</td>
+                <td class="truncate px-2 py-1.5 font-mono text-micro" title={j.command}
+                  >{j.command}</td
+                >
                 <td class="px-2 py-1.5">
                   <div class="flex gap-0.5">
-                    <Button variant="ghost" size="icon" title="View output" aria-label="View" onclick={() => view(j.id)}>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      title="View output"
+                      aria-label="View"
+                      onclick={() => view(j.id)}
+                    >
                       <AppIcons.view class="size-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" title="Stream live output" aria-label="Watch" onclick={() => watch(j.id)}>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      title="Stream live output"
+                      aria-label="Watch"
+                      onclick={() => watch(j.id)}
+                    >
                       <AppIcons.watch class="size-4" />
                     </Button>
-                    {#if j.state === 'running'}<Button variant="ghost" size="icon" class="text-destructive" title="Kill the job" aria-label="Kill" onclick={() => kill(j.id)}>
-                      <AppIcons.kill class="size-4" />
-                    </Button>{/if}
+                    {#if j.state === 'running'}<Button
+                        variant="ghost"
+                        size="icon"
+                        class="text-destructive"
+                        title="Kill the job"
+                        aria-label="Kill"
+                        onclick={() => kill(j.id)}
+                      >
+                        <AppIcons.kill class="size-4" />
+                      </Button>{/if}
                   </div>
                 </td>
               </tr>

@@ -8,29 +8,8 @@ export type PreviewKind = 'image' | 'audio' | 'video' | 'text' | 'none'
 // One entry per line, which is how the formatter writes a list it has to wrap.
 // Packing several per line reads better in a small set and badly in a diff: a
 // single added extension rewrites the whole paragraph.
-const IMAGE = new Set([
-  'png',
-  'jpg',
-  'jpeg',
-  'gif',
-  'webp',
-  'bmp',
-  'svg',
-  'ico',
-  'avif',
-  'apng',
-])
-const AUDIO = new Set([
-  'mp3',
-  'wav',
-  'ogg',
-  'oga',
-  'm4a',
-  'aac',
-  'flac',
-  'opus',
-  'weba',
-])
+const IMAGE = new Set(['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'svg', 'ico', 'avif', 'apng'])
+const AUDIO = new Set(['mp3', 'wav', 'ogg', 'oga', 'm4a', 'aac', 'flac', 'opus', 'weba'])
 const VIDEO = new Set(['mp4', 'webm', 'ogv', 'mov', 'm4v', 'mkv', 'avi'])
 const TEXT = new Set([
   'txt',
@@ -103,8 +82,7 @@ export function previewKind(name: string): PreviewKind {
   if (TEXT.has(e)) return 'text'
   // Extensionless common text files.
   const base = (name.split('/').pop() ?? '').toLowerCase()
-  if (base === 'dockerfile' || base === 'makefile' || base.startsWith('.'))
-    return 'text'
+  if (base === 'dockerfile' || base === 'makefile' || base.startsWith('.')) return 'text'
   return 'none'
 }
 

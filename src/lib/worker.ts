@@ -7,11 +7,7 @@
 // accepts; server-streaming (WatchJob) is handled by a small manual frame
 // reader (see watchJob).
 
-import {
-  type Client,
-  createClient,
-  type Interceptor,
-} from '@connectrpc/connect'
+import { type Client, createClient, type Interceptor } from '@connectrpc/connect'
 import { createConnectTransport } from '@connectrpc/connect-web'
 import { WorkerEnroll, WorkerService } from './gen/worker/v1/worker_pb.js'
 
@@ -66,9 +62,7 @@ export async function watchJob(
     signal,
   })
   if (!res.ok || !res.body) {
-    throw new Error(
-      `watch failed: HTTP ${res.status} ${(await res.text()).slice(0, 200)}`,
-    )
+    throw new Error(`watch failed: HTTP ${res.status} ${(await res.text()).slice(0, 200)}`)
   }
   const reader = res.body.getReader()
   let buf: Uint8Array<ArrayBufferLike> = new Uint8Array(0)
