@@ -44,9 +44,14 @@ jobs:
       - name: format
         run: npm run format:check
 
-      # LINT AND TYPES, from the shared `check` script.
+      # LINT, from the shared `check` script.
       - name: check
         run: npm run check
+
+      # TYPES. `svelte-check` reports a type error inside a `.svelte` file that vite happily bundles, so a
+      # build-only gate lets it through and it fails at runtime instead.
+      - name: types
+        run: npm run check:svelte
 
       - name: build
         run: npm run build
